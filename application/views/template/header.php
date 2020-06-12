@@ -1,109 +1,71 @@
-<!DOCTYPE html>
-<html lang="en">
+<!doctype html>
+<html class="no-js" lang="en">
 
 <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>AlliedExpress - Everything atYour Doorstep</title>
     <meta name="description" content="">
-    <meta name="author" content="">
-    <title>You make a difference. We make it easy</title>
-    <link href="<?php echo base_url('assets/css/style.default.css'); ?>" rel="stylesheet">
-    <link href="<?php echo base_url('assets/css/morris.css'); ?>" rel="stylesheet">
-    <link href="<?php echo base_url('assets/css/bootstrap-timepicker.min.css'); ?>" rel="stylesheet">
-    <link href="<?php echo base_url('assets/css/select2.css'); ?>" rel="stylesheet">
-    <link href="<?php echo base_url('assets/css/animate.delay.css'); ?>" rel="stylesheet">
-    <link href="<?php echo base_url('assets/css/animate.min.css'); ?>" rel="stylesheet">
-    <link href="<?php echo base_url('assets/css/bootstrap-override.css'); ?>" rel="stylesheet">
-    <link href="<?php echo base_url('assets/css/bootstrap.min.css'); ?>" rel="stylesheet">
-    <link href="<?php echo base_url('assets/css/font-awesome.min.css'); ?>" rel="stylesheet">
-    <link href="<?php echo base_url('assets/css/jquery-ui-1.10.3.css'); ?>" rel="stylesheet">
-    <link href="<?php echo base_url('assets/css/pace.css'); ?>" rel="stylesheet">
-    <link href="<?php echo base_url('assets/css/toggles.css'); ?>" rel="stylesheet">
-    <link href="<?php echo base_url('assets/css/weather-icons.min.css'); ?>" rel="stylesheet">
-    <link href="<?php echo base_url('assets/css/style.datatables.css'); ?>" rel="stylesheet">
-    <link href="//cdn.datatables.net/responsive/1.0.1/css/dataTables.responsive.css" rel="stylesheet">
-    <link href="<?php echo base_url('assets/css/dropzone.css'); ?>" rel="stylesheet">
-    <link href="<?php echo base_url('assets/css/jquery-jvectormap-2.0.5.css'); ?>" rel="stylesheet">
+    <meta name="keywords" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <script src="<?php echo base_url('assets/js/daterangepicker.js'); ?>"></script>
-    <script src="<?php echo base_url('assets/js/jquery-3.1.1.min.js'); ?>"></script>
-    <script src="<?php echo base_url('assets/js/jquery-ui.js'); ?>"></script>
-    <script src="<?php echo base_url('assets/js/jquery-migrate-1.2.1.min.js'); ?>"></script>
-    <script src="<?php echo base_url('assets/js/bootstrap.min.js'); ?>"></script>
-    <script src="<?php echo base_url('assets/js/modernizr.min.js'); ?>"></script>
-    <script src="<?php echo base_url('assets/js/pace.min.js'); ?>"></script>
-    <script src="<?php echo base_url('assets/js/retina.min.js'); ?>"></script>
-    <script src="<?php echo base_url('assets/js/jquery.cookies.js'); ?>"></script>
-    <script src="<?php echo base_url('assets/js/flot/jquery.flot.min.js'); ?>"></script>
-    <script src="<?php echo base_url('assets/js/flot/jquery.flot.resize.min.js'); ?>"></script>
-    <script src="<?php echo base_url('assets/js/flot/jquery.flot.spline.min.js'); ?>"></script>
-    <script src="<?php echo base_url('assets/js/jquery.sparkline.min.js'); ?>"></script>
-    <script src="<?php echo base_url('assets/js/morris.min.js'); ?>"></script>
-    <script src="<?php echo base_url('assets/js/raphael-2.1.0.min.js'); ?>"></script>
-    <script src="<?php echo base_url('assets/js/bootstrap-wizard.min.js'); ?>"></script>
-    <script src="<?php echo base_url('assets/js/bootstrap-timepicker.min.js'); ?>"></script>
-    <script src="<?php echo base_url('assets/js/select2.min.js'); ?>"></script>
-    <script src="<?php echo base_url('assets/js/custom.js'); ?>"></script>
-    <script src="<?php echo base_url('assets/js/dashboard.js'); ?>"></script>
-    <script src="<?php echo base_url('assets/js/jquery.dataTables.min.js'); ?>"></script>
-    <script src="<?php echo base_url('assets/js/dataTables.bootstrap.js'); ?>"></script>
-    <script src="<?php echo base_url('assets/js/dataTables.responsive.js'); ?>"></script>
-    <script src="<?php echo base_url('assets/js/dropzone.min.js'); ?>"></script>
-    <script src="<?php echo base_url('assets/js/map.js'); ?>"></script>
-    <script src="<?php echo base_url('assets/js/jquery-jvectormap-2.0.5.min.js'); ?>"></script>
-    <script src="<?php echo base_url('assets/js/jquery-jvectormap-world-mill-en.js'); ?>"></script>
-    <script src="<?php echo base_url('assets/js/jquery-jvectormap-us-aea-en.js'); ?>"></script>
-    <script src="<?php echo base_url('assets/js/jquery.vmap.srilanka.js'); ?>"></script>
-    <script src="<?php echo base_url('assets/js/require.js'); ?>"></script>
-    <link href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" rel="stylesheet">
+    <link rel="icon" href="<?php echo base_url('assets/favicon.png'); ?>" type="image/x-icon" />
 
-    <script src="<?php echo base_url('assets/js/flot/jquery.flot.symbol.min.js'); ?>"></script>
-    <script src="<?php echo base_url('assets/js/flot/jquery.flot.crosshair.min.js'); ?>"></script>
-    <script src="<?php echo base_url('assets/js/flot/jquery.flot.categories.min.js'); ?>"></script>
-    <script src="<?php echo base_url('assets/js/flot/jquery.flot.pie.min.js'); ?>"></script>
+    <link href="https://fonts.googleapis.com/css?family=Nunito+Sans:300,400,600,700,800" rel="stylesheet">
+
+    <link rel="stylesheet" href="<?php echo base_url('assets/plugins/bootstrap/dist/css/bootstrap.min.css'); ?>">
+    <link rel="stylesheet" href="<?php echo base_url('assets/plugins/fontawesome-free/css/all.min.css'); ?>">
+    <link rel="stylesheet" href="<?php echo base_url('assets/plugins/ionicons/dist/css/ionicons.min.css'); ?>">
+    <link rel="stylesheet" href="<?php echo base_url('assets/plugins/icon-kit/dist/css/iconkit.min.css'); ?>">
+    <link rel="stylesheet" href="<?php echo base_url('assets/plugins/perfect-scrollbar/css/perfect-scrollbar.css'); ?>">
+    <link rel="stylesheet" href="<?php echo base_url('assets/dist/css/theme.min.css'); ?>">
+    <script src="<?php echo base_url('assets/src/js/vendor/modernizr-2.8.3.min.js'); ?>"></script>
+
+    <link rel="stylesheet" href="<?php echo base_url('assets/plugins/datatables.net-bs4/css/dataTables.bootstrap4.min.css'); ?>">
+    <link rel="stylesheet" href="<?php echo base_url('assets/plugins/jvectormap/jquery-jvectormap.css'); ?>">
+    <link rel="stylesheet" href="<?php echo base_url('assets/plugins/tempusdominus-bootstrap-4/build/css/tempusdominus-bootstrap-4.min.css'); ?>">
+    <link rel="stylesheet" href="<?php echo base_url('assets/plugins/weather-icons/css/weather-icons.min.css'); ?>">
+    <link rel="stylesheet" href="<?php echo base_url('assets/plugins/c3/c3.min.css'); ?>">
+    <link rel="stylesheet" href="<?php echo base_url('assets/plugins/owl.carousel/dist/assets/owl.carousel.min.css'); ?>">
+    <link rel="stylesheet" href="<?php echo base_url('assets/plugins/owl.carousel/dist/assets/owl.theme.default.min.css'); ?>">
+    <link rel="stylesheet" href="<?php echo base_url('assets/plugins/select2/dist/css/select2.min.css'); ?>">
+
+
+
+ <!-- Javascript -->
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script>
+        window.jQuery || document.write('<script src="<?php echo base_url('assets/src/js/vendor/jquery-3.3.1.min.js'); ?>"><\/script>')
+    </script>
+    <script src="<?php echo base_url('assets/plugins/popper.js/dist/umd/popper.min.js'); ?>"></script>
+    <script src="<?php echo base_url('assets/plugins/bootstrap/dist/js/bootstrap.min.js'); ?>"></script>
+    <script src="<?php echo base_url('assets/plugins/perfect-scrollbar/dist/perfect-scrollbar.min.js'); ?>"></script>
+    <script src="<?php echo base_url('assets/plugins/screenfull/dist/screenfull.js'); ?>"></script>
+    <script src="<?php echo base_url('assets/dist/js/theme.js'); ?>"></script>
+
+    <script src="<?php echo base_url('assets/plugins/datatables.net/js/jquery.dataTables.min.js'); ?>"></script>
+    <script src="<?php echo base_url('assets/plugins/datatables.net-bs4/js/dataTables.bootstrap4.min.js'); ?>"></script>
+    <script src="<?php echo base_url('assets/plugins/datatables.net-responsive/js/dataTables.responsive.min.js'); ?>"></script>
+    <script src="<?php echo base_url('assets/plugins/datatables.net-responsive-bs4/js/responsive.bootstrap4.min.js'); ?>"></script>
+    <script src="<?php echo base_url('assets/plugins/jvectormap/jquery-jvectormap.min.js'); ?>"></script>
+    <script src="<?php echo base_url('assets/plugins/jvectormap/tests/assets/jquery-jvectormap-world-mill-en.js'); ?>"></script>
+    <script src="<?php echo base_url('assets/plugins/moment/moment.js'); ?>"></script>
+    <script src="<?php echo base_url('assets/plugins/tempusdominus-bootstrap-4/build/js/tempusdominus-bootstrap-4.min.js'); ?>"></script>
+    <script src="<?php echo base_url('assets/plugins/d3/dist/d3.min.js'); ?>"></script>
+    <script src="<?php echo base_url('assets/plugins/c3/c3.min.js'); ?>"></script>
+    <script src="<?php echo base_url('assets/js/tables.js'); ?>"></script>
+    <script src="<?php echo base_url('assets/js/widgets.js'); ?>"></script>
     <script src="<?php echo base_url('assets/js/charts.js'); ?>"></script>
-    <script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
-
-    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!--[if lt IE 9]>
-        <script src="js/html5shiv.js"></script>
-        <script src="js/respond.min.js"></script>
-        <![endif]-->
-    <style>
-        .pac-container {
-            background-color: #FFF;
-            z-index: 20;
-            position: fixed;
-            display: inline-block;
-        }
-
-        .modal {
-            z-index: 20;
-            top: 5% !important;
-
-        }
-
-        .modal-backdrop {
-            z-index: 10;
-        }
-
-        ​ ::-moz-selection {
-            /* Code for Firefox */
-            color: white;
-            background: #494d54;
-        }
-
-        ::selection {
-            color: white;
-            background: #494d54;
-        }
-    </style>
+    <script src="<?php echo base_url('assets/dist/js/theme.min.js'); ?>"></script>
+    <script src="<?php echo base_url('assets/js/datatables.js'); ?>"></script>
+    <script src="<?php echo base_url('assets/plugins/select2/dist/js/select2.min.js'); ?>"></script>
 </head>
 
-
-
-<!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
-<!--[if lt IE 9]>
-        <script src="js/html5shiv.js"></script>
-        <script src="js/respond.min.js"></script>
+<body>
+    <!--[if lt IE 8]>
+            <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
         <![endif]-->
+
+    <div class="wrapper">
+
+        <div class="page-wrap">

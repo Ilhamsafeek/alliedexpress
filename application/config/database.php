@@ -75,10 +75,10 @@ $query_builder = TRUE;
 
 $db['default'] = array(
 	'dsn'	=> '',
-	'hostname' => '50.87.216.65',
-	'username' => 'alliedex_root',
-	'password' => 'All1ed',
-	'database' => 'alliedx_track',
+	'hostname' => '50.116.101.46',
+	'username' => 'lwijermy',
+	'password' => 'Karumpuli@hero583',
+	'database' => 'lwijermy_track',
 	'dbdriver' => 'mysqli',
 	'dbprefix' => '',
 	'pconnect' => FALSE,

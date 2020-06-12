@@ -7,46 +7,44 @@ class Model_users extends CI_Model
 		parent::__construct();
 	}
 
-	public function getUserDataByPhone($phone)
-	{
 
-		$sql = "SELECT * FROM users INNER JOIN roles ON users.role_id=roles.id WHERE users.phone = ?";
-		$query = $this->db->query($sql, array($phone));
-		return $query->row_array();
-	}
 
-	public function getUserData($userId = null)
+	public function getUserData($type, $userId = null)
 	{
 		if ($userId) {
-			$sql = "SELECT * FROM users WHERE user_id = ?";
-			$query = $this->db->query($sql, array($userId));
+			$sql = "SELECT * FROM users 
+			INNER JOIN city ON city.city_id=users.city_id
+			INNER JOIN zone ON city.zone_id=zone.zone_id 
+			
+			WHERE users.user_id = ? AND users.type = ?";
+			$query = $this->db->query($sql, array($userId, $type));
 			return $query->row_array();
 		}
 
-		$sql = "SELECT * FROM users ORDER BY user_id DESC";
-		$query = $this->db->query($sql);
+		$sql = "SELECT * FROM users 
+		INNER JOIN city ON city.city_id=users.city_id
+		INNER JOIN zone ON city.zone_id=zone.zone_id 
+		WHERE users.type = ? ORDER BY users.user_id DESC";
+		$query = $this->db->query($sql, $type);
+		return $query->result_array();
+	}
+
+	public function getNonAdminData()
+	{
+
+
+		$sql = "SELECT * FROM users 
+		INNER JOIN city ON city.city_id=users.city_id
+		INNER JOIN zone ON city.zone_id=zone.zone_id 
+		WHERE users.type <> ? ORDER BY users.user_id DESC";
+		$query = $this->db->query($sql, 'admin');
 		return $query->result_array();
 	}
 
 
-	public function getUserRole($userId = null)
-	{
-		if ($userId) {
-			$sql = "SELECT * FROM users WHERE user_id = ?";
-			$query = $this->db->query($sql, array($userId));
-			$result = $query->row_array();
-
-			$role_id = $result['role_id'];
-			$g_sql = "SELECT * FROM roles WHERE id = ?";
-			$g_query = $this->db->query($g_sql, array($role_id));
-			$q_result = $g_query->row_array();
-			return $q_result;
-		}
-	}
-
 	public function create($data = '')
 	{
-	
+
 		if ($data) {
 			$create = $this->db->insert('users', $data);
 
@@ -56,11 +54,11 @@ class Model_users extends CI_Model
 		}
 	}
 
-	
-     // User Hit
+
+	// User Hit
 	public function createUserHit($data = '')
 	{
-	
+
 		if ($data) {
 			$create = $this->db->insert('user_hit', $data);
 
@@ -77,7 +75,7 @@ class Model_users extends CI_Model
 		return $query->result_array();
 	}
 
-	
+
 
 	public function countTotalRegistration()
 	{
@@ -102,11 +100,9 @@ class Model_users extends CI_Model
 		return ($update == true) ? true : false;
 	}
 
-	public function editUser($id)
+	public function editUser($data, $id)
 	{
-		foreach ($_POST as $key => $value) {
-			$data[$key] = $value;
-		}
+
 		$this->db->where('user_id', $id);
 		$update = $this->db->update('users', $data);
 
@@ -120,7 +116,7 @@ class Model_users extends CI_Model
 			$data[$key] = $value;
 		}
 
-		$this->db->where('phone',$data['phone']);
+		$this->db->where('phone', $data['phone']);
 		$update = $this->db->update('users', $data);
 
 		return ($update == true) ? true : false;
@@ -161,5 +157,4 @@ class Model_users extends CI_Model
 		$query = $this->db->query($sql);
 		return $query->result_array();
 	}
-
 }

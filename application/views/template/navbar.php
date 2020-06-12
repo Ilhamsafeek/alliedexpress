@@ -1,147 +1,82 @@
-<body>
-
-    <!-- The core Firebase JS SDK is always required and must be listed first -->
-    <script src="https://www.gstatic.com/firebasejs/7.14.5/firebase-app.js"></script>
-
-    <!-- TODO: Add SDKs for Firebase products that you want to use
-     https://firebase.google.com/docs/web/setup#available-libraries -->
-    <script src="https://www.gstatic.com/firebasejs/7.14.5/firebase-analytics.js"></script>
-
-
-
-    <header>
-        <div class="headerwrapper">
-            <div class="header-left">
-                <a href="<?php echo base_url(); ?>" class="logo">
-                    <img height="30px" src="<?php echo base_url('assets/images/logo.png'); ?>" alt=""></a>
-                <div class="pull-right">
-                    <a href="chain.html" class="menu-collapse">
-                        <i class="fa fa-bars"></i>
-                    </a>
+<header class="header-top" header-theme="light">
+    <div class="container-fluid">
+        <div class="d-flex justify-content-between">
+            <div class="top-menu d-flex align-items-center">
+                <button type="button" class="btn-icon mobile-nav-toggle d-lg-none"><span></span></button>
+                <div class="header-search">
+                    <div class="input-group">
+                        <span class="input-group-addon search-close"><i class="ik ik-x"></i></span>
+                        <input type="text" class="form-control">
+                        <span class="input-group-addon search-btn"><i class="ik ik-search"></i></span>
+                    </div>
                 </div>
-            </div><!-- header-left -->
-
-            <div class="header-right">
-
-                <div class="pull-right">
-                    <!-- 
-                <form class="form form-search" action="search-results.html">
-                    <input type="search" class="form-control" placeholder="Search"></form> -->
-
-                    <div class="btn-group btn-group-list btn-group-notification">
-                        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-                            <i class="fa fa-bell-o"></i>
-                            <span class="badge">5</span>
-                        </button>
-                        <div class="dropdown-menu pull-right">
-                            <a href="chain.html" class="link-right"><i class="fa fa-search"></i></a>
-                            <h5>Notification</h5>
-                            <ul class="media-list dropdown-list">
-                                <li class="media">
-                                    <img class="img-circle pull-left noti-thumb" src="images/photos-user1.png" alt="">
-                                    <div class="media-body">
-                                        <strong>Nusja Nawancali</strong> likes a photo of you
-                                        <small class="date"><i class="fa fa-thumbs-up"></i> 15 minutes ago</small>
-                                    </div>
-                                </li>
-                                <li class="media">
-                                    <img class="img-circle pull-left noti-thumb" src="images/photos-user2.png" alt="">
-                                    <div class="media-body">
-                                        <strong>Weno Carasbong</strong> shared a photo of you in your <strong>Mobile
-                                            Uploads</strong> album.
-                                        <small class="date"><i class="fa fa-calendar"></i> July 04, 2014</small>
-                                    </div>
-                                </li>
-                                <li class="media">
-                                    <img class="img-circle pull-left noti-thumb" src="images/photos-user3.png" alt="">
-                                    <div class="media-body">
-                                        <strong>Venro Leonga</strong> likes a photo of you
-                                        <small class="date"><i class="fa fa-thumbs-up"></i> July 03, 2014</small>
-                                    </div>
-                                </li>
-                                <li class="media">
-                                    <img class="img-circle pull-left noti-thumb" src="images/photos-user4.png" alt="">
-                                    <div class="media-body">
-                                        <strong>Nanterey Reslaba</strong> shared a photo of you in your <strong>Mobile
-                                            Uploads</strong> album.
-                                        <small class="date"><i class="fa fa-calendar"></i> July 03, 2014</small>
-                                    </div>
-                                </li>
-                                <li class="media">
-                                    <img class="img-circle pull-left noti-thumb" src="images/photos-user1.png" alt="">
-                                    <div class="media-body">
-                                        <strong>Nusja Nawancali</strong> shared a photo of you in your <strong>Mobile
-                                            Uploads</strong> album.
-                                        <small class="date"><i class="fa fa-calendar"></i> July 02, 2014</small>
-                                    </div>
-                                </li>
-                            </ul>
-                            <div class="dropdown-footer text-center">
-                                <a href="chain.html" class="link">See All Notifications</a>
-                            </div>
+                <button type="button" id="navbar-fullscreen" class="nav-link"><i class="ik ik-maximize"></i></button>
+            </div>
+            <div class="top-menu d-flex align-items-center">
+                <!-- <div class="dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="notiDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="ik ik-bell"></i><span class="badge bg-danger">3</span></a>
+                    <div class="dropdown-menu dropdown-menu-right notification-dropdown" aria-labelledby="notiDropdown">
+                        <h4 class="header">Notifications</h4>
+                        <div class="notifications-wrap">
+                            <a href="#" class="media">
+                                <span class="d-flex">
+                                    <i class="ik ik-check"></i>
+                                </span>
+                                <span class="media-body">
+                                    <span class="heading-font-family media-heading">Invitation accepted</span>
+                                    <span class="media-content">Your have been Invited ...</span>
+                                </span>
+                            </a>
+                            <a href="#" class="media">
+                                <span class="d-flex">
+                                    <img src="img/users/1.jpg" class="rounded-circle" alt="">
+                                </span>
+                                <span class="media-body">
+                                    <span class="heading-font-family media-heading">Steve Smith</span>
+                                    <span class="media-content">I slowly updated projects</span>
+                                </span>
+                            </a>
+                            <a href="#" class="media">
+                                <span class="d-flex">
+                                    <i class="ik ik-calendar"></i>
+                                </span>
+                                <span class="media-body">
+                                    <span class="heading-font-family media-heading">To Do</span>
+                                    <span class="media-content">Meeting with Nathan on Friday 8 AM ...</span>
+                                </span>
+                            </a>
                         </div>
-                        <!-- dropdown-menu -->
-                    </div><!-- btn-group -->
+                        <div class="footer"><a href="javascript:void(0);">See all activity</a></div>
+                    </div>
+                </div> -->
+                <!-- <button type="button" class="nav-link ml-10 right-sidebar-toggle"><i class="ik ik-message-square"></i><span class="badge bg-success">3</span></button>
+                <div class="dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="menuDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="ik ik-plus"></i></a>
+                    <div class="dropdown-menu dropdown-menu-right menu-grid" aria-labelledby="menuDropdown">
+                        <a class="dropdown-item" href="#" data-toggle="tooltip" data-placement="top" title="Dashboard"><i class="ik ik-bar-chart-2"></i></a>
+                        <a class="dropdown-item" href="#" data-toggle="tooltip" data-placement="top" title="Message"><i class="ik ik-mail"></i></a>
+                        <a class="dropdown-item" href="#" data-toggle="tooltip" data-placement="top" title="Accounts"><i class="ik ik-users"></i></a>
+                        <a class="dropdown-item" href="#" data-toggle="tooltip" data-placement="top" title="Sales"><i class="ik ik-shopping-cart"></i></a>
+                        <a class="dropdown-item" href="#" data-toggle="tooltip" data-placement="top" title="Purchase"><i class="ik ik-briefcase"></i></a>
+                        <a class="dropdown-item" href="#" data-toggle="tooltip" data-placement="top" title="Pages"><i class="ik ik-clipboard"></i></a>
+                        <a class="dropdown-item" href="#" data-toggle="tooltip" data-placement="top" title="Chats"><i class="ik ik-message-square"></i></a>
+                        <a class="dropdown-item" href="#" data-toggle="tooltip" data-placement="top" title="Contacts"><i class="ik ik-map-pin"></i></a>
+                        <a class="dropdown-item" href="#" data-toggle="tooltip" data-placement="top" title="Blocks"><i class="ik ik-inbox"></i></a>
+                        <a class="dropdown-item" href="#" data-toggle="tooltip" data-placement="top" title="Events"><i class="ik ik-calendar"></i></a>
+                        <a class="dropdown-item" href="#" data-toggle="tooltip" data-placement="top" title="Notifications"><i class="ik ik-bell"></i></a>
+                        <a class="dropdown-item" href="#" data-toggle="tooltip" data-placement="top" title="More"><i class="ik ik-more-horizontal"></i></a>
+                    </div>
+                </div> -->
+                <!-- <button type="button" class="nav-link ml-10" id="apps_modal_btn" data-toggle="modal" data-target="#appsModal"><i class="ik ik-grid"></i></button> -->
+                <div class="dropdown">
+                    <a class="dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img class="avatar" src="img/user.jpg" alt=""></a>
+                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
+                        <!-- <a class="dropdown-item" href="<?php echo base_url('users/profile'); ?>"><i class="ik ik-user dropdown-icon"></i> Profile</a> -->
+                        <a class="dropdown-item" href="<?php echo base_url('auth/logout'); ?>"><i class="ik ik-power dropdown-icon"></i> Logout</a>
+                    </div>
+                </div>
 
-                    <div class="btn-group btn-group-list btn-group-messages">
-                        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-                            <i class="fa fa-envelope-o"></i>
-                            <span class="badge">2</span>
-                        </button>
-                        <div class="dropdown-menu pull-right">
-                            <a href="chain.html" class="link-right"><i class="fa fa-plus"></i></a>
-                            <h5>New Messages</h5>
-                            <ul class="media-list dropdown-list">
-                                <!-- <li class="media">
-                                    <span class="badge badge-success">New</span>
-                                    <img class="img-circle pull-left noti-thumb" src="images/photos-user1.png" alt="">
-                                    <div class="media-body">
-                                        <strong>Nusja Nawancali</strong>
-                                        <p>Hi! How are you?...</p>
-                                        <small class="date"><i class="fa fa-clock-o"></i> 15 minutes ago</small>
-                                    </div>
-                                </li> -->
-
-                                <?php foreach ($chat_data as $key => $value) : ?>
-                                    <li class="media">
-                                        <img class="img-circle pull-left noti-thumb" src="images/photos-user1.png" alt="">
-                                        <div class="media-body">
-                                            <strong><?php echo $value['topic']; ?></strong>
-                                            <p><?php echo $value['message']; ?></p>
-                                            <small class="date"><i class="fa fa-clock-o"></i> <?php echo date('M d, Y H:i', $value['time_stamp']); ?></small>
-                                        </div>
-                                    </li>
-                                <?php endforeach; ?>
-                            </ul>
-                            <div class="dropdown-footer text-center">
-                                <a target="_blank" href="<?php echo base_url('message'); ?>" class="link">See All Messages</a>
-                            </div>
-                        </div>
-                        <!-- dropdown-menu -->
-                    </div><!-- btn-group -->
-
-                    <div class="btn-group btn-group-option">
-                        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-                            <i class="fa fa-caret-down"></i>
-                        </button>
-                        <ul class="dropdown-menu pull-right" role="menu">
-                            <li><a href="#"><i class="glyphicon glyphicon-user"></i> My Profile</a></li>
-                            <li><a href="<?php echo base_url('company') ?>"><i class="glyphicon glyphicon-cog"></i> General Settings</a></li>
-                            <li class="divider">
-                            </li>
-                            <li><a href="<?php echo base_url('auth/logout'); ?>"><i class="glyphicon glyphicon-log-out"></i>Sign Out</a></li>
-                        </ul>
-                    </div><!-- btn-group -->
-
-                </div><!-- pull-right -->
-
-            </div><!-- header-right -->
-
-        </div><!-- headerwrapper -->
-    </header>
-
-
-
-    <section>
-
-        <div class="mainwrapper">
+            </div>
+        </div>
+    </div>
+</header>
