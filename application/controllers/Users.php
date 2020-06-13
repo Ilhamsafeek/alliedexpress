@@ -36,18 +36,14 @@ class Users extends Admin_Controller
 	public function create($page)
 	{
 
-
 		$password = $this->password_hash($this->input->post('password'));
-		$data = array(
-			'username' => $this->input->post('username'),
-			'password' => $password,
-			'email' => $this->input->post('email'),
-			'commission' => $this->input->post('commission'),
-			'phone' => $this->input->post('phone'),
-			'type' => $this->input->post('type'),
-			'city_id' => $this->input->post('city_id'),
 
-		);
+		$data = array();
+		foreach ($_POST as $key => $value) {
+			$data[$key] = $value;
+		}
+		$data['password'] = $password;
+
 
 		$create = $this->model_users->create($data);
 		if ($create == true) {
@@ -70,48 +66,24 @@ class Users extends Admin_Controller
 	public function edit($id, $page)
 	{
 
-		if (empty($this->input->post('password')) && empty($this->input->post('cpassword'))) {
-			$data = array(
-				'username' => $this->input->post('username'),
 
-				'email' => $this->input->post('email'),
-				'commission' => $this->input->post('commission'),
-				'phone' => $this->input->post('phone'),
-				'city_id' => $this->input->post('city_id'),
-
-			);
-
-			$update = $this->model_users->edit($data, $id);
-			if ($update == true) {
-				$this->session->set_flashdata('success', 'Successfully created');
-				redirect($page, 'refresh');
-			} else {
-				$this->session->set_flashdata('errors', 'Error occurred!!');
-				redirect($page, 'refresh');
-			}
+		$data = array();
+		foreach ($_POST as $key => $value) {
+			$data[$key] = $value;
+		}
+		if (empty($this->input->post('password'))) {
+			unset($data['password']);
 		} else {
-
-
 			$password = $this->password_hash($this->input->post('password'));
-
-			$data = array(
-				'password' => $password,
-				'username' => $this->input->post('username'),
-				'email' => $this->input->post('email'),
-				'commission' => $this->input->post('commission'),
-				'phone' => $this->input->post('phone'),
-				'city_id' => $this->input->post('city_id'),
-
-			);
-
-			$update = $this->model_users->edit($data, $id);
-			if ($update == true) {
-				$this->session->set_flashdata('success', 'Successfully updated');
-				redirect($page, 'refresh');
-			} else {
-				$this->session->set_flashdata('errors', 'Error occurred!!');
-				redirect($page, 'refresh');
-			}
+			$data['password'] = $password;
+		}
+		$update = $this->model_users->editUser($data, $id);
+		if ($update == true) {
+			$this->session->set_flashdata('success', 'Successfully created');
+			redirect($page, 'refresh');
+		} else {
+			$this->session->set_flashdata('errors', 'Error occurred!!');
+			redirect($page, 'refresh');
 		}
 	}
 

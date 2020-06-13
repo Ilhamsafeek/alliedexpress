@@ -67,7 +67,7 @@
                                                     <div class="col-sm-12">
                                                         <div class="form-group">
                                                             <label class="font-normal">Name</label>
-                                                            <input id="username" name="username" type="text" class="form-control" autocomplete="off" required>
+                                                            <input id="name" name="name" type="text" class="form-control" autocomplete="off" required>
                                                         </div>
                                                     </div>
                                                     <div class="col-sm-8">
@@ -101,20 +101,40 @@
                                                     </div>
                                                 </div>
                                                 <div class="col-sm-6">
+                                                    <p>Bank Details</p>
+                                                    <div class="col-sm-8">
+                                                        <div class="form-group">
+                                                            <label class="font-normal">Bank</label>
+                                                            <input id="bank" name="bank" type="text" class="form-control" required>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-sm-6">
+                                                        <div class="form-group">
+                                                            <label class="font-normal">Branch</label>
+                                                            <input id="branch" name="branch" type="text" class="form-control" required>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-sm-8">
+                                                        <div class="form-group">
+                                                            <label class="font-normal">Account Number</label>
+                                                            <input id="account_no" name="account_no" type="text" class="form-control" required>
+                                                        </div>
+                                                    </div>
                                                     <p>Account access</p>
                                                     <div class="col-sm-8">
                                                         <div class="form-group">
+                                                            <label class="font-normal">Username</label>
+                                                            <input name="username" type="username" class="form-control" autocomplete="off" required>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-sm-8">
+                                                        <div class="form-group">
                                                             <label class="font-normal">Password</label>
-                                                            <input id="password" name="password" type="password" class="form-control" autocomplete="off" required>
+                                                            <input name="password" type="password" class="form-control" autocomplete="off" required>
                                                         </div>
                                                     </div>
 
-                                                    <div class="col-sm-8">
-                                                        <div class="form-group">
-                                                            <label class="font-normal">Confirm Password</label>
-                                                            <input id="cpassword" type="password" class="form-control" autocomplete="off" required>
-                                                        </div>
-                                                    </div>
+
                                                     <input id="type" name="type" type="hidden" class="form-control" value="agent">
                                                 </div>
 
@@ -147,7 +167,7 @@
                                     <?php foreach ($user_data as $key => $value) { ?>
                                         <tr>
                                             <td><?php echo $user_data[$key]['city'] . '/' . $user_data[$key]['zone']; ?></td>
-                                            <td><?php echo $user_data[$key]['username']; ?></td>
+                                            <td><?php echo $user_data[$key]['name']; ?></td>
                                             <td><?php echo $user_data[$key]['phone']; ?></td>
                                             <td><?php echo $user_data[$key]['commission']; ?></td>
                                             <td>
@@ -179,7 +199,7 @@
                                                                     <div class="col-sm-12">
                                                                         <div class="form-group">
                                                                             <label class="font-normal">Name</label>
-                                                                            <input id="username" name="username" type="text" class="form-control" autocomplete="off" value="<?php echo $user_data[$key]['username']; ?>" required>
+                                                                            <input id="name" name="name" type="text" class="form-control" autocomplete="off" value="<?php echo $user_data[$key]['name']; ?>" required>
                                                                         </div>
                                                                     </div>
                                                                     <div class="col-sm-8">
@@ -217,6 +237,25 @@
                                                                     </div>
                                                                 </div>
                                                                 <div class="col-sm-6">
+                                                                    <p>Bank Details</p>
+                                                                    <div class="col-sm-8">
+                                                                        <div class="form-group">
+                                                                            <label class="font-normal">Bank</label>
+                                                                            <input id="bank" name="bank" type="text" class="form-control" value="<?php echo $user_data[$key]['bank']; ?>" required>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="col-sm-6">
+                                                                        <div class="form-group">
+                                                                            <label class="font-normal">Branch</label>
+                                                                            <input id="branch" name="branch" type="text" class="form-control" value="<?php echo $user_data[$key]['branch']; ?>" required>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="col-sm-8">
+                                                                        <div class="form-group">
+                                                                            <label class="font-normal">Account Number</label>
+                                                                            <input id="account_no" name="account_no" type="text" class="form-control" value="<?php echo $user_data[$key]['account_no']; ?>" required>
+                                                                        </div>
+                                                                    </div>
                                                                     <p>Account access</p>
                                                                     <div class="col-md-12">
                                                                         <div class="form-group">
@@ -227,17 +266,18 @@
                                                                     </div>
                                                                     <div class="col-sm-8">
                                                                         <div class="form-group">
+                                                                            <label class="font-normal">Username</label>
+                                                                            <input name="username" type="username" class="form-control" autocomplete="off" value="<?php echo $user_data[$key]['username']; ?>">
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="col-sm-8">
+                                                                        <div class="form-group">
                                                                             <label class="font-normal">Password</label>
-                                                                            <input id="password" name="password" type="password" class="form-control" autocomplete="off">
+                                                                            <input name="password" type="password" class="form-control" autocomplete="off">
                                                                         </div>
                                                                     </div>
 
-                                                                    <div class="col-sm-8">
-                                                                        <div class="form-group">
-                                                                            <label class="font-normal">Confirm Password</label>
-                                                                            <input id="cpassword" type="password" class="form-control" autocomplete="off">
-                                                                        </div>
-                                                                    </div>
+
 
                                                                 </div>
 
@@ -265,7 +305,7 @@
                                                         <p>Do you Really want to delete?</p>
                                                     </div>
 
-                                                    <form role="form" id="createForm" action="<?php echo base_url('users/delete/' . $user_data[$key]['user_id'].'/agents') ?>" method="post">
+                                                    <form role="form" id="createForm" action="<?php echo base_url('users/delete/' . $user_data[$key]['user_id'] . '/agents') ?>" method="post">
 
                                                         <?php echo validation_errors(); ?>
 

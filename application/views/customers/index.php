@@ -56,7 +56,7 @@
                                     </div>
 
 
-                                    <form role="form" id="createForm" action="<?php echo base_url('customers/create') ?>" method="post">
+                                    <form role="form" id="createForm" action="<?php echo base_url('users/create/customers') ?>" method="post">
 
                                         <?php echo validation_errors(); ?>
                                         <div class="modal-body">
@@ -115,6 +115,24 @@
                                                             <input id="account_no" name="account_no" type="text" class="form-control" required>
                                                         </div>
                                                     </div>
+                                                    <p>Account access</p>
+                                                    <div class="col-sm-8">
+                                                        <div class="form-group">
+                                                            <label class="font-normal">Username</label>
+                                                            <input name="username" type="username" class="form-control" autocomplete="off" required>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-sm-8">
+                                                        <div class="form-group">
+                                                            <label class="font-normal">Password</label>
+                                                            <input name="password" type="password" class="form-control" autocomplete="off" required>
+                                                        </div>
+                                                    </div>
+
+
+                                                    <input id="type" name="type" type="hidden" class="form-control" value="customer">
+                                                    <input id="date" name="date" type="hidden" class="form-control" value="<?php echo date("d/m/Y"); ?>">
+
                                                 </div>
 
                                             </div>
@@ -134,6 +152,7 @@
                             <table id="simpletable" class="table table-striped table-bordered nowrap">
                                 <thead>
                                     <tr>
+                                        <th>Reg. Date</th>
                                         <th>Company</th>
                                         <th>Name</th>
                                         <th>Address</th>
@@ -149,6 +168,7 @@
 
                                     <?php foreach ($customer_data as $key => $value) { ?>
                                         <tr>
+                                            <td><?php echo $customer_data[$key]['date']; ?></td>
                                             <td><?php echo $customer_data[$key]['company']; ?></td>
                                             <td><?php echo $customer_data[$key]['name']; ?></td>
                                             <td><?php echo $customer_data[$key]['address']; ?></td>
@@ -160,13 +180,13 @@
                                             <td>
                                                 <div class="table-actions">
 
-                                                    <a href="#" data-toggle="modal" data-target="#editModal<?php echo $customer_data[$key]['customer_id']; ?>"><i class="ik ik-edit-2"></i></a>
-                                                    <a href="#" data-toggle="modal" data-target="#deleteModal<?php echo $customer_data[$key]['customer_id']; ?>"><i class="ik ik-trash-2"></i></a>
+                                                    <a href="#" data-toggle="modal" data-target="#editModal<?php echo $customer_data[$key]['user_id']; ?>"><i class="ik ik-edit-2"></i></a>
+                                                    <a href="#" data-toggle="modal" data-target="#deleteModal<?php echo $customer_data[$key]['user_id']; ?>"><i class="ik ik-trash-2"></i></a>
                                                 </div>
                                             </td>
 
                                         </tr>
-                                        <div class="modal fade" id="editModal<?php echo $customer_data[$key]['customer_id']; ?>" tabindex="-1" role="dialog" aria-labelledby="demoModalLabel" aria-hidden="true">
+                                        <div class="modal fade" id="editModal<?php echo $customer_data[$key]['user_id']; ?>" tabindex="-1" role="dialog" aria-labelledby="demoModalLabel" aria-hidden="true">
                                             <div class="modal-dialog modal-lg" role="document">
                                                 <div class="modal-content">
                                                     <div class="modal-header">
@@ -175,7 +195,7 @@
                                                     </div>
 
 
-                                                    <form role="form" id="createForm" action="<?php echo base_url('customers/edit/' . $customer_data[$key]['customer_id']) ?>" method="post">
+                                                    <form role="form" id="createForm" action="<?php echo base_url('users/edit/' . $customer_data[$key]['user_id'] . '/customers') ?>" method="post">
 
                                                         <?php echo validation_errors(); ?>
                                                         <div class="modal-body">
@@ -234,6 +254,28 @@
                                                                             <input id="account_no" name="account_no" type="text" class="form-control" value="<?php echo $customer_data[$key]['account_no']; ?>" required>
                                                                         </div>
                                                                     </div>
+                                                                    <p>Account access</p>
+                                                                    <div class="col-md-12">
+                                                                        <div class="form-group">
+                                                                            <div class="alert alert-info alert-dismissible" role="alert">
+                                                                                Leave the password field empty if you don't want to change.
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="col-sm-8">
+                                                                        <div class="form-group">
+                                                                            <label class="font-normal">Username</label>
+                                                                            <input name="username" type="username" class="form-control" autocomplete="off" value="<?php echo $customer_data[$key]['username']; ?>" required>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="col-sm-8">
+                                                                        <div class="form-group">
+                                                                            <label class="font-normal">Password</label>
+                                                                            <input name="password" type="password" class="form-control" autocomplete="off">
+                                                                        </div>
+                                                                    </div>
+
+
                                                                 </div>
 
                                                             </div>
@@ -247,7 +289,7 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="modal fade" id="deleteModal<?php echo $customer_data[$key]['customer_id']; ?>" tabindex="-1" role="dialog" aria-hidden="true">
+                                        <div class="modal fade" id="deleteModal<?php echo $customer_data[$key]['user_id']; ?>" tabindex="-1" role="dialog" aria-hidden="true">
                                             <div class="modal-dialog" role="document">
                                                 <div class="modal-content">
                                                     <div class="modal-header">
@@ -258,7 +300,7 @@
                                                         <p>Do you Really want to delete?</p>
                                                     </div>
 
-                                                    <form role="form" id="createForm" action="<?php echo base_url('customers/delete/' . $customer_data[$key]['customer_id']) ?>" method="post">
+                                                    <form role="form" id="createForm" action="<?php echo base_url('customers/delete/' . $customer_data[$key]['user_id']) ?>" method="post">
 
                                                         <?php echo validation_errors(); ?>
 

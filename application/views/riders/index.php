@@ -57,7 +57,7 @@
                                                     <div class="col-sm-12">
                                                         <div class="form-group">
                                                             <label class="font-normal">Name</label>
-                                                            <input id="username" name="username" type="text" class="form-control" autocomplete="off" required>
+                                                            <input id="name" name="name" type="text" class="form-control" autocomplete="off" required>
                                                         </div>
                                                     </div>
                                                     <div class="col-sm-8">
@@ -94,17 +94,18 @@
                                                     <p>Account access</p>
                                                     <div class="col-sm-8">
                                                         <div class="form-group">
+                                                            <label class="font-normal">Username</label>
+                                                            <input type="username" class="form-control" autocomplete="off" required>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-sm-8">
+                                                        <div class="form-group">
                                                             <label class="font-normal">Password</label>
-                                                            <input id="password" name="password" type="password" class="form-control" autocomplete="off" required>
+                                                            <input name="password" type="password" class="form-control" autocomplete="off" required>
                                                         </div>
                                                     </div>
 
-                                                    <div class="col-sm-8">
-                                                        <div class="form-group">
-                                                            <label class="font-normal">Confirm Password</label>
-                                                            <input id="cpassword" type="password" class="form-control" autocomplete="off" required>
-                                                        </div>
-                                                    </div>
+
                                                     <input id="type" name="type" type="hidden" class="form-control" value="rider">
                                                 </div>
 
@@ -137,7 +138,7 @@
                                     <?php foreach ($user_data as $key => $value) { ?>
                                         <tr>
                                             <td><?php echo $user_data[$key]['city'] . '/' . $user_data[$key]['zone']; ?></td>
-                                            <td><?php echo $user_data[$key]['username']; ?></td>
+                                            <td><?php echo $user_data[$key]['name']; ?></td>
                                             <td><?php echo $user_data[$key]['phone']; ?></td>
                                             <td><?php echo $user_data[$key]['commission']; ?></td>
                                             <td>
@@ -169,7 +170,7 @@
                                                                     <div class="col-sm-12">
                                                                         <div class="form-group">
                                                                             <label class="font-normal">Name</label>
-                                                                            <input id="username" name="username" type="text" class="form-control" autocomplete="off" value="<?php echo $user_data[$key]['username']; ?>" required>
+                                                                            <input id="name" name="name" type="text" class="form-control" autocomplete="off" value="<?php echo $user_data[$key]['name']; ?>" required>
                                                                         </div>
                                                                     </div>
                                                                     <div class="col-sm-8">
@@ -217,17 +218,18 @@
                                                                     </div>
                                                                     <div class="col-sm-8">
                                                                         <div class="form-group">
+                                                                            <label class="font-normal">Username</label>
+                                                                            <input id="username" type="username" class="form-control" autocomplete="off" value="<?php echo $user_data[$key]['username']; ?>" required>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="col-sm-8">
+                                                                        <div class="form-group">
                                                                             <label class="font-normal">Password</label>
-                                                                            <input id="password" name="password" type="password" class="form-control" autocomplete="off">
+                                                                            <input name="password" type="password" class="form-control" autocomplete="off">
                                                                         </div>
                                                                     </div>
 
-                                                                    <div class="col-sm-8">
-                                                                        <div class="form-group">
-                                                                            <label class="font-normal">Confirm Password</label>
-                                                                            <input id="cpassword" type="password" class="form-control" autocomplete="off">
-                                                                        </div>
-                                                                    </div>
+
 
                                                                 </div>
 
@@ -255,7 +257,7 @@
                                                         <p>Do you Really want to delete?</p>
                                                     </div>
 
-                                                    <form role="form" id="createForm" action="<?php echo base_url('users/delete/' . $user_data[$key]['user_id'].'/riders'); ?>" method="post">
+                                                    <form role="form" id="createForm" action="<?php echo base_url('users/delete/' . $user_data[$key]['user_id'] . '/riders'); ?>" method="post">
 
                                                         <?php echo validation_errors(); ?>
 

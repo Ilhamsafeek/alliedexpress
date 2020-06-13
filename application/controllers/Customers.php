@@ -11,14 +11,14 @@ class Customers extends Admin_Controller
 		$this->data['page_title'] = 'Customers';
 
 		$this->load->model('model_customers');
-		// $this->load->model('model_roles');
+		$this->load->model('model_users');
 	}
 
 	public function index()
 	{
 
 
-		$customer_data = $this->model_customers->getCustomerData();
+		$customer_data = $this->model_users->getUserData('customer');
 
 
 		$this->data['customer_data'] = $customer_data;
@@ -28,19 +28,14 @@ class Customers extends Admin_Controller
 
 	public function create()
 	{
+		$password = $this->password_hash($this->input->post('password'));
 
-		// $this->form_validation->set_rules('company', 'Company', 'required');
-		// $this->form_validation->set_rules('name', 'Name', 'trim|required');
-		// $this->form_validation->set_rules('email', 'Email', 'trim|required|is_unique[customers.email]');
-		// $this->form_validation->set_rules('phone', 'Phone', 'trim|required|min_length[8]');
-		// $this->form_validation->set_rules('bank', 'Bank', 'trim|required');
-		// $this->form_validation->set_rules('account_no', 'Account Number', 'trim|required');
-		// $this->form_validation->set_rules('branch', 'Branch', 'trim|required');
-
-
-		// if ($this->form_validation->run() == TRUE) {
-
-		$create = $this->model_customers->create();
+		$data = array();
+		foreach ($_POST as $key => $value) {
+			$data[$key] = $value;
+		}
+		$data['password'] = $password;
+		$create = $this->model_users->create($data);
 		if ($create == true) {
 			$this->session->set_flashdata('success', 'Successfully Created');
 			redirect('customers/', 'refresh');
@@ -48,20 +43,45 @@ class Customers extends Admin_Controller
 			$this->session->set_flashdata('errors', 'Error occurred!!');
 			redirect('customers/', 'refresh');
 		}
-		// } 
 	}
 
 
 	public function edit($id = null)
 	{
-		$update = $this->model_customers->edit($id);
-		if ($update == true) {
+		if (empty($this->input->post('password'))) {
 
-			$this->session->set_flashdata('success', 'Successfully updated');
-			redirect('customers/', 'refresh');
+			$data = array();
+			foreach ($_POST as $key => $value) {
+				$data[$key] = $value;
+			}
+
+			$update = $this->model_users->edit($data, $id);
+			if ($update == true) {
+				$this->session->set_flashdata('success', 'Successfully created');
+				redirect('customers', 'refresh');
+			} else {
+				$this->session->set_flashdata('errors', 'Error occurred!!');
+				redirect('customers', 'refresh');
+			}
 		} else {
-			$this->session->set_flashdata('errors', 'Error occurred!!');
-			redirect('customers/', 'refresh');
+
+
+			$password = $this->password_hash($this->input->post('password'));
+
+			$data = array();
+			foreach ($_POST as $key => $value) {
+				$data[$key] = $value;
+			}
+			$data['password'] = $password;
+
+			$update = $this->model_users->edit($data, $id);
+			if ($update == true) {
+				$this->session->set_flashdata('success', 'Successfully updated');
+				redirect('customers', 'refresh');
+			} else {
+				$this->session->set_flashdata('errors', 'Error occurred!!');
+				redirect('customers', 'refresh');
+			}
 		}
 	}
 
@@ -70,7 +90,7 @@ class Customers extends Admin_Controller
 
 		if ($id) {
 
-			$delete = $this->model_customers->delete($id);
+			$delete = $this->model_users->delete($id);
 			if ($delete == true) {
 				$this->session->set_flashdata('success', 'Successfully removed');
 				redirect('customers/', 'refresh');
@@ -78,6 +98,14 @@ class Customers extends Admin_Controller
 				$this->session->set_flashdata('error', 'Error occurred!!');
 				redirect('customers/', 'refresh');
 			}
+		}
+	}
+
+	public function password_hash($pass = '')
+	{
+		if ($pass) {
+			$password = password_hash($pass, PASSWORD_DEFAULT);
+			return $password;
 		}
 	}
 }
