@@ -45,30 +45,31 @@
                 <div class="card">
                     <div class="card-body">
 
-                        <form role="form" id="createForm" action="<?php echo base_url('users/edit/' . $account_data[0]['user_id'] . '/users/profile'); ?>" method="post">
+                        <form role="form" id="createForm" action="<?php echo base_url('users/edit/' . $account_data['user_id'] . '/dashboard'); ?>" method="post">
 
-                            <?php echo validation_errors(); ?>
+                            <?php
+                            echo validation_errors(); ?>
 
                             <div class="row">
                                 <div class="col-sm-6">
 
                                     <div class="col-sm-12">
                                         <div class="form-group">
-                                            <label class="font-normal">Name</label>
-                                            <input id="username" name="username" type="text" class="form-control" autocomplete="off" value="<?php echo $account_data[0]['username']; ?>" required>
+                                            <label class="font-normal">Username</label>
+                                            <input readonly id="username" name="username" type="text" class="form-control" autocomplete="off" value="<?php echo $account_data['username']; ?>" required>
                                         </div>
                                     </div>
 
                                     <div class="col-sm-8">
                                         <div class="form-group">
                                             <label class="font-normal">Phone</label>
-                                            <input id="phone" name="phone" type="text" class="form-control" value="<?php echo  $account_data[0]['phone']; ?>" required>
+                                            <input id="phone" name="phone" type="text" class="form-control" value="<?php echo  $account_data['phone']; ?>" required>
                                         </div>
                                     </div>
                                     <div class="col-sm-8">
                                         <div class="form-group">
                                             <label class="font-normal">Email</label>
-                                            <input id="email" name="email" type="text" class="form-control" value="<?php echo  $account_data[0]['email']; ?>" required>
+                                            <input id="email" name="email" type="text" class="form-control" value="<?php echo  $account_data['email']; ?>" required>
                                         </div>
                                     </div>
 
@@ -89,12 +90,6 @@
                                         </div>
                                     </div>
 
-                                    <div class="col-sm-8">
-                                        <div class="form-group">
-                                            <label class="font-normal">Confirm Password</label>
-                                            <input id="cpassword" type="password" class="form-control" autocomplete="off">
-                                        </div>
-                                    </div>
 
                                 </div>
 

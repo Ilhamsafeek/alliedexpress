@@ -7,23 +7,23 @@
                         <i class="ik ik-command bg-blue"></i>
                         <div class="d-inline">
                             <h5>Agents</h5>
-                            <!-- <span>lorem ipsum dolor sit amet, consectetur adipisicing elit</span> -->
+                            <span>The Party who can deal delivery of packages</span>
                         </div>
                     </div>
                 </div>
-                <!-- <div class="col-lg-4">
+                <div class="col-lg-4">
                     <nav class="breadcrumb-container" aria-label="breadcrumb">
                         <ol class="breadcrumb">
                             <li class="breadcrumb-item">
-                                <a href="../index.html"><i class="ik ik-home"></i></a>
+                                <a href="#"><i class="ik ik-home"></i></a>
                             </li>
                             <li class="breadcrumb-item">
-                                <a href="#">Tables</a>
+                                <a href="#">Master files</a>
                             </li>
-                            <li class="breadcrumb-item active" aria-current="page">Data Table</li>
+                            <li class="breadcrumb-item active" aria-current="page">Agents</li>
                         </ol>
                     </nav>
-                </div> -->
+                </div>
             </div>
         </div>
 
@@ -72,10 +72,10 @@
                                                     </div>
                                                     <div class="col-sm-8">
                                                         <div class="form-group">
-                                                            <label class="col-form-label" for="description">City</label>
-                                                            <select class="form-control select2" data-placeholder="Choose city" id="city_id" name="city_id" style="width:100%;" required>
-                                                                <?php foreach ($city_data as $k => $v) : ?>
-                                                                    <option value="<?php echo $v['city_id']; ?>"><?php echo $v['city'] ?></option>
+                                                            <label class="col-form-label" for="description">Zone</label>
+                                                            <select class="form-control select2" data-placeholder="Choose zone" id="zone_id" name="zone_id" style="width:100%;" required>
+                                                                <?php foreach ($zone_data as $k => $v) : ?>
+                                                                    <option value="<?php echo $v['zone_id']; ?>"><?php echo $v['zone'] ?></option>
                                                                 <?php endforeach ?>
                                                             </select>
                                                         </div>
@@ -151,11 +151,12 @@
                         </div>
                     </div>
                     <div class="card-body">
-                        <div class="dt-responsive">
+                        <div class="table-responsive">
                             <table id="simpletable" class="table table-striped table-bordered nowrap">
                                 <thead>
                                     <tr>
-                                        <th>Area</th>
+                                        <th></th>
+                                        <th>Zone</th>
                                         <th>Name</th>
                                         <th>Phone</th>
                                         <th>Commission</th>
@@ -166,7 +167,8 @@
 
                                     <?php foreach ($user_data as $key => $value) { ?>
                                         <tr>
-                                            <td><?php echo $user_data[$key]['city'] . '/' . $user_data[$key]['zone']; ?></td>
+                                            <th></th>
+                                            <td><?php echo $user_data[$key]['zone']; ?></td>
                                             <td><?php echo $user_data[$key]['name']; ?></td>
                                             <td><?php echo $user_data[$key]['phone']; ?></td>
                                             <td><?php echo $user_data[$key]['commission']; ?></td>
@@ -204,12 +206,12 @@
                                                                     </div>
                                                                     <div class="col-sm-8">
                                                                         <div class="form-group">
-                                                                            <label class="col-form-label" for="description">City</label>
-                                                                            <select class="form-control select2" data-placeholder="Choose city" id="city_id" name="city_id" style="width:100%;" required>
-                                                                                <?php foreach ($city_data as $k => $v) : ?>
-                                                                                    <option value="<?php echo $v['city_id']; ?>" <?php if ($v['city_id'] == $user_data[$key]['city_id']) {
+                                                                            <label class="col-form-label" for="description">Zone</label>
+                                                                            <select class="form-control select2" data-placeholder="Choose zone" id="zone_id" name="zone_id" style="width:100%;" required>
+                                                                                <?php foreach ($zone_data as $k => $v) : ?>
+                                                                                    <option value="<?php echo $v['zone_id']; ?>" <?php if ($v['zone_id'] == $user_data[$key]['zone_id']) {
                                                                                                                                         echo 'selected';
-                                                                                                                                    } ?>><?php echo $v['city'] ?></option>
+                                                                                                                                    } ?>><?php echo $v['zone'] ?></option>
                                                                                 <?php endforeach ?>
 
 

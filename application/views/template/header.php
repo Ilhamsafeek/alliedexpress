@@ -19,7 +19,9 @@
     <link rel="stylesheet" href="<?php echo base_url('assets/plugins/icon-kit/dist/css/iconkit.min.css'); ?>">
     <link rel="stylesheet" href="<?php echo base_url('assets/plugins/perfect-scrollbar/css/perfect-scrollbar.css'); ?>">
     <link rel="stylesheet" href="<?php echo base_url('assets/dist/css/theme.min.css'); ?>">
+
     <script src="<?php echo base_url('assets/src/js/vendor/modernizr-2.8.3.min.js'); ?>"></script>
+    <link rel="stylesheet" href="<?php echo base_url('assets/src/css/custom.css'); ?>">
 
     <link rel="stylesheet" href="<?php echo base_url('assets/plugins/datatables.net-bs4/css/dataTables.bootstrap4.min.css'); ?>">
     <link rel="stylesheet" href="<?php echo base_url('assets/plugins/jvectormap/jquery-jvectormap.css'); ?>">
@@ -29,10 +31,11 @@
     <link rel="stylesheet" href="<?php echo base_url('assets/plugins/owl.carousel/dist/assets/owl.carousel.min.css'); ?>">
     <link rel="stylesheet" href="<?php echo base_url('assets/plugins/owl.carousel/dist/assets/owl.theme.default.min.css'); ?>">
     <link rel="stylesheet" href="<?php echo base_url('assets/plugins/select2/dist/css/select2.min.css'); ?>">
+    <link rel="stylesheet" href="<?php echo base_url('assets/plugins/bootstrap-slider/dist/css/bootstrap-slider.min.css'); ?>">
 
 
 
- <!-- Javascript -->
+    <!-- Javascript -->
     <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
     <script>
         window.jQuery || document.write('<script src="<?php echo base_url('assets/src/js/vendor/jquery-3.3.1.min.js'); ?>"><\/script>')
@@ -59,6 +62,8 @@
     <script src="<?php echo base_url('assets/dist/js/theme.min.js'); ?>"></script>
     <script src="<?php echo base_url('assets/js/datatables.js'); ?>"></script>
     <script src="<?php echo base_url('assets/plugins/select2/dist/js/select2.min.js'); ?>"></script>
+    <script src="<?php echo base_url('assets/plugins/bootstrap-slider/dist/bootstrap-slider.min.js'); ?>"></script>
+
 </head>
 
 <body>

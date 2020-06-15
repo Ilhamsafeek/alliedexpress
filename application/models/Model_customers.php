@@ -17,7 +17,7 @@ class Model_customers extends CI_Model
 			return $query->row_array();
 		}
 
-		$sql = "SELECT * FROM customers ORDER BY customer_id DESC";
+		$sql = "SELECT * FROM users ORDER BY customer_id DESC";
 		$query = $this->db->query($sql);
 		return $query->result_array();
 	}

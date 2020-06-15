@@ -42,7 +42,18 @@
                 <div class="nav-lavel">---</div>
                 <div id="packagesMainMenu" class="nav-item">
                     <a href="<?php echo base_url('packages'); ?>"><i class="ik ik-package"></i><span>Packages</span></a>
-                   
+
+                </div>
+                <div id="otherExpensesMainMenu" class="nav-item">
+                    <a href="<?php echo base_url('expenses'); ?>"><i class="ik ik-minus-circle"></i><span>Other Expenses</span></a>
+
+                </div>
+                <div class="nav-lavel">Payment</div>
+                <div id="customerPaymentMainMenu" class="nav-item">
+                    <a href="<?php echo base_url('payment/customer'); ?>"><i class="ik ik-check-circle"></i><span>Customer Payment</span></a>
+                </div>
+                <div id="agentToOfficeMainMenu" class="nav-item">
+                    <a href="<?php echo base_url('payment/agenttooffice'); ?>"><i class="ik ik-navigation-2"></i><span>Agent to head office</span></a>
                 </div>
 
             </nav>

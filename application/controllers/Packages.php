@@ -23,7 +23,7 @@ class Packages extends Admin_Controller
 		$city_data = $this->model_packages->getPackageData();
 		$this->data['package_data'] = $city_data;
 
-		$customer_data = $this->model_customers->getCustomerData();
+		$customer_data = $this->model_users->getUserData('customer');
 		$this->data['customer_data'] = $customer_data;
 
 		$city_data = $this->model_areas->getCityData();

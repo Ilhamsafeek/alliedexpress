@@ -19,6 +19,6 @@ class Dashboard extends Admin_Controller
 
 	public function notfound()
 	{
-		$this->render_template('notfound', $this->data);
+		$this->render_template('notfound');
 	}
 }

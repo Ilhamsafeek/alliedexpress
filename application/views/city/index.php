@@ -7,23 +7,23 @@
                         <i class="ik ik-git-merge bg-blue"></i>
                         <div class="d-inline">
                             <h5>City</h5>
-                            <!-- <span>lorem ipsum dolor sit amet, consectetur adipisicing elit</span> -->
+                            <span>Sub category under a zone</span>
                         </div>
                     </div>
                 </div>
-                <!-- <div class="col-lg-4">
+                <div class="col-lg-4">
                     <nav class="breadcrumb-container" aria-label="breadcrumb">
                         <ol class="breadcrumb">
                             <li class="breadcrumb-item">
-                                <a href="../index.html"><i class="ik ik-home"></i></a>
+                                <a href="#"><i class="ik ik-home"></i></a>
                             </li>
                             <li class="breadcrumb-item">
-                                <a href="#">Tables</a>
+                                <a href="#">Master files</a>
                             </li>
-                            <li class="breadcrumb-item active" aria-current="page">Data Table</li>
+                            <li class="breadcrumb-item active" aria-current="page">City</li>
                         </ol>
                     </nav>
-                </div> -->
+                </div>
             </div>
         </div>
 

@@ -25,17 +25,15 @@ class Model_users extends CI_Model
 			return $query->result_array();
 		}
 		if ($userId) {
-			$sql = "SELECT * FROM users 
-			INNER JOIN city ON city.city_id=users.city_id
-			INNER JOIN zone ON city.zone_id=zone.zone_id 			
-			WHERE users.user_id = ? AND users.type = ?";
-			$query = $this->db->query($sql, array($userId, $type));
+			$sql = "SELECT * FROM users 			
+			INNER JOIN zone ON users.zone_id=zone.zone_id 			
+			WHERE users.user_id = ?";
+			$query = $this->db->query($sql, array($userId));
 			return $query->row_array();
 		}
 
-		$sql = "SELECT * FROM users 
-		INNER JOIN city ON city.city_id=users.city_id
-		INNER JOIN zone ON city.zone_id=zone.zone_id 
+		$sql = "SELECT * FROM users 		
+		INNER JOIN zone ON users.zone_id=zone.zone_id 
 		WHERE users.type = ? ORDER BY users.user_id DESC";
 		$query = $this->db->query($sql, $type);
 		return $query->result_array();
@@ -44,10 +42,9 @@ class Model_users extends CI_Model
 	public function getNonAdminData()
 	{
 
-
 		$sql = "SELECT * FROM users 
-		INNER JOIN city ON city.city_id=users.city_id
-		INNER JOIN zone ON city.zone_id=zone.zone_id 
+	
+		INNER JOIN zone ON users.zone_id=zone.zone_id 
 		WHERE users.type <> ? ORDER BY users.user_id DESC";
 		$query = $this->db->query($sql, 'admin');
 		return $query->result_array();

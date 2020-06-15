@@ -19,8 +19,8 @@ class Agents extends Admin_Controller
 
 		$user_data = $this->model_users->getUserData('agent');
 		$this->data['user_data'] = $user_data;
-		$city_data = $this->model_areas->getCityData();
-		$this->data['city_data'] = $city_data;
+		$zone_data = $this->model_areas->getZoneData();
+		$this->data['zone_data'] = $zone_data;
 		$this->render_template('agents/index', $this->data);
 	}
 

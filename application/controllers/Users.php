@@ -25,7 +25,7 @@ class Users extends Admin_Controller
 
 	public function profile()
 	{
-		$user_data = $this->model_users->getUserData('admin');
+		$user_data = $this->model_users->getUserData('all', $this->session->userdata()['id']);
 
 		$this->data['account_data'] = $user_data;
 

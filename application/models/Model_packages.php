@@ -13,7 +13,7 @@ class Model_packages extends CI_Model
 	{
 		if ($packageId) {
 			$sql = "SELECT * FROM packages 
-			INNER JOIN customers ON packages.customer_id=customers.customer_id 
+			INNER JOIN users ON packages.customer_id=users.user_id
 			INNER JOIN city ON packages.city_id=city.city_id
 			INNER JOIN zone ON zone.zone_id=city.zone_id
 			WHERE packages.package_id = ?";
@@ -22,7 +22,7 @@ class Model_packages extends CI_Model
 		}
 
 		$sql = "SELECT * FROM packages 
-		INNER JOIN customers ON packages.customer_id=customers.customer_id
+		INNER JOIN users ON packages.customer_id=users.user_id
 		INNER JOIN city ON packages.city_id=city.city_id
 			INNER JOIN zone ON zone.zone_id=city.zone_id
 		ORDER BY packages.package_id DESC";
