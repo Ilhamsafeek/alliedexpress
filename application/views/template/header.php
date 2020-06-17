@@ -32,6 +32,8 @@
     <link rel="stylesheet" href="<?php echo base_url('assets/plugins/owl.carousel/dist/assets/owl.theme.default.min.css'); ?>">
     <link rel="stylesheet" href="<?php echo base_url('assets/plugins/select2/dist/css/select2.min.css'); ?>">
     <link rel="stylesheet" href="<?php echo base_url('assets/plugins/bootstrap-slider/dist/css/bootstrap-slider.min.css'); ?>">
+    <!-- timeline -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pixeden-stroke-7-icon@1.2.3/pe-icon-7-stroke/dist/pe-icon-7-stroke.min.css">
 
 
 

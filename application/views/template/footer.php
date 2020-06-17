@@ -30,65 +30,50 @@
                    <div class="modal-body d-flex align-items-center">
                        <div class="container">
                            <div class="apps-wrap">
-                               <div class="app-item">
-                                   <a href="#"><i class="ik ik-bar-chart-2"></i><span>Dashboard</span></a>
-                               </div>
-                               <div class="app-item dropdown">
-                                   <a href="#" class="dropdown-toggle" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="ik ik-command"></i><span>Ui</span></a>
-                                   <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                                       <a class="dropdown-item" href="#">Action</a>
-                                       <a class="dropdown-item" href="#">Another action</a>
-                                       <a class="dropdown-item" href="#">Something else here</a>
+                               <?php if ($this->session->userdata()['type'] == 'admin') : ?>
+                                   <div class="app-item">
+                                       <a href="<?php echo base_url('/'); ?>"><i class="ik ik-bar-chart-2"></i><span>Dashboard</span></a>
                                    </div>
-                               </div>
+                               <?php endif; ?>
+                               <?php if ($this->session->userdata()['type'] == 'admin') : ?>
+                                   <div class="app-item">
+                                       <a href="<?php echo base_url('customers'); ?>"><i class="ik ik-users"></i><span>Customers</span></a>
+                                   </div>
+                                   <div class="app-item">
+                                       <a href="<?php echo base_url('agents'); ?>"><i class="ik ik-command"></i><span>Agents</span></a>
+                                   </div>
+                                   <div class="app-item">
+                                       <a href="<?php echo base_url('riders'); ?>"><i class="ik ik-truck"></i><span>Riders</span></a>
+                                   </div>
+                                   <div class="app-item">
+                                       <a href="<?php echo base_url('areas/zone'); ?>"><i class="ik ik-triangle"></i><span>Zone</span></a>
+                                   </div>
+                                   <div class="app-item">
+                                       <a href="<?php echo base_url('areas/city'); ?>"><i class="ik ik-git-merge"></i><span>City</span></a>
+                                   </div>
+                               <?php endif; ?>
+
                                <div class="app-item">
-                                   <a href="#"><i class="ik ik-mail"></i><span>Message</span></a>
+                                   <a href="<?php echo base_url('packages'); ?>"><i class="ik ik-package"></i><span>Packages</span></a>
                                </div>
-                               <div class="app-item">
-                                   <a href="#"><i class="ik ik-users"></i><span>Accounts</span></a>
-                               </div>
-                               <div class="app-item">
-                                   <a href="#"><i class="ik ik-shopping-cart"></i><span>Sales</span></a>
-                               </div>
-                               <div class="app-item">
-                                   <a href="#"><i class="ik ik-briefcase"></i><span>Purchase</span></a>
-                               </div>
-                               <div class="app-item">
-                                   <a href="#"><i class="ik ik-server"></i><span>Menus</span></a>
-                               </div>
-                               <div class="app-item">
-                                   <a href="#"><i class="ik ik-clipboard"></i><span>Pages</span></a>
-                               </div>
-                               <div class="app-item">
-                                   <a href="#"><i class="ik ik-message-square"></i><span>Chats</span></a>
-                               </div>
-                               <div class="app-item">
-                                   <a href="#"><i class="ik ik-map-pin"></i><span>Contacts</span></a>
-                               </div>
-                               <div class="app-item">
-                                   <a href="#"><i class="ik ik-box"></i><span>Blocks</span></a>
-                               </div>
-                               <div class="app-item">
-                                   <a href="#"><i class="ik ik-calendar"></i><span>Events</span></a>
-                               </div>
-                               <div class="app-item">
-                                   <a href="#"><i class="ik ik-bell"></i><span>Notifications</span></a>
-                               </div>
-                               <div class="app-item">
-                                   <a href="#"><i class="ik ik-pie-chart"></i><span>Reports</span></a>
-                               </div>
-                               <div class="app-item">
-                                   <a href="#"><i class="ik ik-layers"></i><span>Tasks</span></a>
-                               </div>
-                               <div class="app-item">
-                                   <a href="#"><i class="ik ik-edit"></i><span>Blogs</span></a>
-                               </div>
-                               <div class="app-item">
-                                   <a href="#"><i class="ik ik-settings"></i><span>Settings</span></a>
-                               </div>
-                               <div class="app-item">
-                                   <a href="#"><i class="ik ik-more-horizontal"></i><span>More</span></a>
-                               </div>
+                               <?php if ($this->session->userdata()['type'] == 'admin') : ?>
+                                   <div class="app-item">
+                                       <a href="<?php echo base_url('expenses'); ?>"><i class="ik ik-minus-circle"></i><span>Other Expenses</span></a>
+                                   </div>
+                               <?php endif; ?>
+                               <?php if ($this->session->userdata()['type'] == 'admin' || $this->session->userdata()['type'] == 'customer') : ?>
+
+                                   <div class="app-item">
+                                       <a href="<?php echo base_url('payment/customer'); ?>"><i class="ik ik-check-circle"></i><span>Customer Payment</span></a>
+                                   </div>
+                               <?php endif; ?>
+                               <?php if ($this->session->userdata()['type'] != 'customer' && $this->session->userdata()['type'] != 'rider') : ?>
+
+                                   <div class="app-item">
+                                       <a href="<?php echo base_url('payment/agenttooffice'); ?>"><i class="ik ik-navigation-2"></i><span>Agent to head office</span></a>
+                                   </div>
+                               <?php endif; ?>
+
                            </div>
                        </div>
                    </div>
@@ -98,7 +83,8 @@
 
 
        <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
-       <script>
+
+       <script type="text/javascript">
            (function(b, o, i, l, e, r) {
                b.GoogleAnalyticsObject = l;
                b[l] || (b[l] =

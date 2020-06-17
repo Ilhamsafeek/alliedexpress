@@ -29,6 +29,9 @@ class Packages extends Admin_Controller
 		$city_data = $this->model_areas->getCityData();
 		$this->data['city_data'] = $city_data;
 
+		$zone_data = $this->model_areas->getZoneData();
+		$this->data['zone_data'] = $zone_data;
+
 		$user_data = $this->model_users->getNonAdminData();
 		$this->data['user_data'] = $user_data;
 		$this->render_template('packages/index', $this->data);
@@ -80,5 +83,12 @@ class Packages extends Admin_Controller
 			$this->session->set_flashdata('error', 'Error occurred!!');
 			redirect('packages', 'refresh');
 		}
+	}
+
+	public function track()
+	{
+		$this->load->view('template/header');
+		$this->load->view('track');
+		$this->load->view('template/footer');
 	}
 }

@@ -43,8 +43,9 @@
             <div class="col-sm-12">
                 <div class="card">
                     <div class="card-header d-block">
-                        <button type="button" class="btn btn-success" data-toggle="modal" data-target="#addModal"><i class="ik ik-plus"></i>New Package</button>
-
+                        <?php if ($this->session->userdata()['type'] == 'admin') : ?>
+                            <button type="button" class="btn btn-success" data-toggle="modal" data-target="#addModal"><i class="ik ik-plus"></i>New Package</button>
+                        <?php endif; ?>
                         <div class="modal fade" id="addModal" role="dialog" aria-labelledby="demoModalLabel" aria-hidden="true">
                             <div class="modal-dialog modal-lg" role="document">
                                 <div class="modal-content">
@@ -185,12 +186,16 @@
                                         <th></th>
                                         <th>Date</th>
                                         <th>Way Bill No</th>
-                                        <th>Customer</th>
+                                        <?php if ($this->session->userdata()['type'] != 'customer') : ?>
+                                            <th>Customer</th>
+                                        <?php endif; ?>
                                         <th>Receiver Name</th>
                                         <th>Receiver Phone</th>
                                         <th>Area</th>
                                         <th>Delivery Status</th>
-                                        <th></th>
+                                        <?php if ($this->session->userdata()['type'] != 'customer') : ?>
+                                            <th></th>
+                                        <?php endif; ?>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -222,7 +227,9 @@
                                             <th></th>
                                             <td><?php echo $package_data[$key]['date']; ?></td>
                                             <td><?php echo $package_data[$key]['way_bill_no']; ?></td>
-                                            <td><?php echo $package_data[$key]['name']; ?></td>
+                                            <?php if ($this->session->userdata()['type'] != 'customer') : ?>
+                                                <td><?php echo $package_data[$key]['name']; ?></td>
+                                            <?php endif; ?>
                                             <td><?php echo $package_data[$key]['receiver_name']; ?></td>
                                             <td><?php echo $package_data[$key]['receiver_phone']; ?></td>
                                             <td><?php echo $package_data[$key]['city'] . ' / ' . $package_data[$key]['zone']; ?></td>
@@ -231,71 +238,22 @@
                                                 <a href="#" data-toggle="modal" data-target="#statusModal<?php echo $package_data[$key]['package_id']; ?>"> <span class="badge badge-<?php echo $status_color; ?>"><?php echo $package_data[$key]['delivery_status']; ?></span></a>
 
                                             </td>
-                                            <td>
-                                                <div class="table-actions">
-                                                    <a href="#" data-toggle="modal" data-target="#updateModal<?php echo $package_data[$key]['package_id']; ?>"><i class="ik ik-refresh-cw"></i></a>
+                                            <?php if ($this->session->userdata()['type'] != 'customer') : ?>
+                                                <td>
+                                                    <div class="table-actions">
 
-                                                    <a href="#" data-toggle="modal" data-target="#editModal<?php echo $package_data[$key]['package_id']; ?>"><i class="ik ik-edit-2"></i></a>
-                                                    <a href="#" data-toggle="modal" data-target="#deleteModal<?php echo $package_data[$key]['package_id']; ?>"><i class="ik ik-trash-2"></i></a>
-                                                </div>
-                                            </td>
+                                                        <a href="#" data-toggle="modal" data-target="#updateModal<?php echo $package_data[$key]['package_id']; ?>"><i class="ik ik-refresh-cw"></i></a>
+
+                                                        <?php if ($this->session->userdata()['type'] == 'admin') : ?>
+                                                            <a href="#" data-toggle="modal" data-target="#editModal<?php echo $package_data[$key]['package_id']; ?>"><i class="ik ik-edit-2"></i></a>
+                                                            <a href="#" data-toggle="modal" data-target="#deleteModal<?php echo $package_data[$key]['package_id']; ?>"><i class="ik ik-trash-2"></i></a>
+                                                        <?php endif; ?>
+                                                    </div>
+                                                </td>
+                                            <?php endif; ?>
 
                                         </tr>
-                                        <div class="modal fade" id="statusModal<?php echo $package_data[$key]['package_id']; ?>" role="dialog" aria-labelledby="demoModalLabel" aria-hidden="true">
-                                            <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
-                                                <div class="modal-content">
-                                                    <div class="modal-header">
-                                                        <h5 class="modal-title" id="demoModalLabel">Delivery Status</h5>
-                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                                                    </div>
-                                                    <div class="modal-body">
 
-                                                        <ul class="timeline" id="timeline">
-                                                            <li class="li complete">
-                                                                <div class="timestamp">
-                                                                    <span class="author">Sharma</span>
-                                                                    <span class="date">11/15/2014<span>
-                                                                </div>
-                                                                <div class="status">
-                                                                    <h6> Collected
-                                                                        .
-                                                                    </h6>
-                                                                </div>
-                                                            </li>
-                                                            <li class="li complete">
-                                                                <div class="timestamp">
-                                                                    <span class="author">PAM Admin</span>
-                                                                    <span class="date">11/15/2014<span>
-                                                                </div>
-                                                                <div class="status">
-                                                                    <h6> Received to destination </h6>
-                                                                </div>
-                                                            </li>
-                                                            <li class="li complete">
-                                                                <div class="timestamp">
-                                                                    <span class="author">Aaron Rodgers</span>
-                                                                    <span class="date">11/15/2014<span>
-                                                                </div>
-                                                                <div class="status">
-                                                                    <h6> Out for delivery </h6>
-                                                                </div>
-                                                            </li>
-                                                            <li class="li">
-                                                                <div class="timestamp">
-                                                                    <span class="author">PAM Admin</span>
-                                                                    <span class="date">TBD<span>
-                                                                </div>
-                                                                <div class="status">
-                                                                    <h6> Delivered
-                                                                        .
-                                                                    </h6>
-                                                                </div>
-                                                            </li>
-                                                        </ul>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
                                         <div class="modal fade" id="updateModal<?php echo $package_data[$key]['package_id']; ?>" role="dialog" aria-labelledby="demoModalLabel" aria-hidden="true">
                                             <div class="modal-dialog" role="document">
                                                 <div class="modal-content">
@@ -317,33 +275,41 @@
                                                                         <div class="form-group">
                                                                             <label class="col-form-label" for="description">Status</label>
                                                                             <select class="form-control select2" data-placeholder="Choose customer" id="delivery_status_<?php echo $package_data[$key]['package_id'] ?>" name="delivery_status" style="width:100%;" onchange="enableReason(this)" required>
-                                                                                <option value="collected" <?php if ($package_data[$key]['delivery_status'] == 'collected') {
-                                                                                                                echo 'selected';
-                                                                                                            } ?>>Collected</option>
+                                                                                <?php if ($this->session->userdata()['type'] == 'admin') : ?>
+                                                                                    <option value="collected" <?php if ($package_data[$key]['delivery_status'] == 'collected') {
+                                                                                                                    echo 'selected';
+                                                                                                                } ?>>Collected</option>
+                                                                                <?php endif; ?>
                                                                                 <option value="out for delivery" <?php if ($package_data[$key]['delivery_status'] == 'out for delivery') {
                                                                                                                         echo 'selected';
                                                                                                                     } ?>>Out for Delivery</option>
                                                                                 <option value="re scheduled" <?php if ($package_data[$key]['delivery_status'] == 're scheduled') {
                                                                                                                     echo 'selected';
                                                                                                                 } ?>>Re Scheduled</option>
-                                                                                <option value="canceled" <?php if ($package_data[$key]['delivery_status'] == 'canceled') {
-                                                                                                                echo 'selected';
-                                                                                                            } ?>>Canceled</option>
+                                                                                <?php if ($this->session->userdata()['type'] == 'admin') : ?>
+                                                                                    <option value="canceled" <?php if ($package_data[$key]['delivery_status'] == 'canceled') {
+                                                                                                                    echo 'selected';
+                                                                                                                } ?>>Canceled</option>
+                                                                                <?php endif; ?>
                                                                                 <option value="returned" <?php if ($package_data[$key]['delivery_status'] == 'returned') {
                                                                                                                 echo 'selected';
                                                                                                             } ?>>Returned</option>
                                                                                 <option value="delivered" <?php if ($package_data[$key]['delivery_status'] == 'delivered') {
                                                                                                                 echo 'selected';
                                                                                                             } ?>>Delivered</option>
-                                                                                <option value="returned to customer" <?php if ($package_data[$key]['delivery_status'] == 'returned to customer') {
-                                                                                                                            echo 'selected';
-                                                                                                                        } ?>>Returned to Customer</option>
+                                                                                <?php if ($this->session->userdata()['type'] == 'admin') : ?>
+                                                                                    <option value="returned to customer" <?php if ($package_data[$key]['delivery_status'] == 'returned to customer') {
+                                                                                                                                echo 'selected';
+                                                                                                                            } ?>>Returned to Customer</option>
+                                                                                <?php endif; ?>
                                                                                 <option value="received to destination" <?php if ($package_data[$key]['delivery_status'] == 'received to destination') {
                                                                                                                             echo 'selected';
                                                                                                                         } ?>>Received to destination</option>
-                                                                                <option value="returned to head office" <?php if ($package_data[$key]['delivery_status'] == 'returned to head office') {
-                                                                                                                            echo 'selected';
-                                                                                                                        } ?>>Returned to head office</option>
+                                                                                <?php if ($this->session->userdata()['type'] == 'admin') : ?>
+                                                                                    <option value="returned to head office" <?php if ($package_data[$key]['delivery_status'] == 'returned to head office') {
+                                                                                                                                echo 'selected';
+                                                                                                                            } ?>>Returned to head office</option>
+                                                                                <?php endif; ?>
 
                                                                             </select>
                                                                         </div>

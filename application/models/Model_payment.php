@@ -14,12 +14,24 @@ class Model_payment extends CI_Model
 	public function getCustomerPaymentData($payment_id = null)
 	{
 		if ($payment_id) {
-			$sql = "SELECT * FROM customer_payment INNER JOIN users ON customer_payment.customer_id=users.user_id WHERE customer_payment_id = ?";
+			$sql = "SELECT * FROM customer_payment INNER JOIN users ON customer_payment.customer_id=users.user_id WHERE customer_payment.customer_payment_id = ?";
 			$query = $this->db->query($sql, array($payment_id,));
 			return $query->row_array();
 		}
-		$sql = "SELECT * FROM customer_payment INNER JOIN users ON customer_payment.customer_id=users.user_id  ORDER BY customer_payment_id DESC";
+
+
+		$sql = "SELECT * FROM customer_payment 
+		INNER JOIN users ON customer_payment.customer_id=users.user_id  
+		ORDER BY customer_payment_id DESC";
 		$query = $this->db->query($sql);
+
+		if ($this->session->userdata()['type'] == 'customer') {
+			$sql = "SELECT * FROM customer_payment 
+		INNER JOIN users ON customer_payment.customer_id=users.user_id
+		WHERE customer_payment.customer_id = ?  
+		ORDER BY customer_payment_id DESC";
+			$query = $this->db->query($sql, $this->session->userdata()['id']);
+		}
 		return $query->result_array();
 	}
 
@@ -63,6 +75,12 @@ class Model_payment extends CI_Model
 		}
 		$sql = "SELECT * FROM agent_to_office_settlement ORDER BY settlement_id DESC";
 		$query = $this->db->query($sql);
+
+		if ($this->session->userdata()['type'] == 'agent') {
+			$sql = "SELECT * FROM agent_to_office_settlement WHERE agent_id = ? ORDER BY settlement_id DESC";
+			$query = $this->db->query($sql, $this->session->userdata()['id']);
+		}
+
 		return $query->result_array();
 	}
 
@@ -77,7 +95,8 @@ class Model_payment extends CI_Model
 			'sub_total' => $this->input->post('sub_total'),
 			'total_courier' => $this->input->post('total_courier'),
 			'total' => $this->input->post('total'),
-			'settlement_receipt_no' => date_timestamp_get($date)
+			'settlement_receipt_no' => date_timestamp_get($date),
+			'agent_id' => $this->session->userdata()['id']
 		);
 
 		$packageArray = explode(',', $this->input->post('packages'));

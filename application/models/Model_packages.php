@@ -21,12 +21,32 @@ class Model_packages extends CI_Model
 			return $query->row_array();
 		}
 
+
 		$sql = "SELECT * FROM packages 
 		INNER JOIN users ON packages.customer_id=users.user_id
 		INNER JOIN city ON packages.city_id=city.city_id
 			INNER JOIN zone ON zone.zone_id=city.zone_id
 		ORDER BY packages.package_id DESC";
 		$query = $this->db->query($sql);
+
+		if ($this->session->userdata()['type'] == 'customer') {
+			$sql = "SELECT * FROM packages 
+		INNER JOIN users ON packages.customer_id=users.user_id
+		INNER JOIN city ON packages.city_id=city.city_id
+			INNER JOIN zone ON zone.zone_id=city.zone_id
+			WHERE packages.customer_id = ?
+		ORDER BY packages.package_id DESC";
+			$query = $this->db->query($sql, $this->session->userdata()['id']);
+		} elseif ($this->session->userdata()['type'] == 'rider' || $this->session->userdata()['type'] == 'agent') {
+			$sql = "SELECT * FROM packages 
+		INNER JOIN users ON packages.customer_id=users.user_id
+		INNER JOIN city ON packages.city_id=city.city_id
+			INNER JOIN zone ON zone.zone_id=city.zone_id
+			WHERE packages.rider_or_agent_id = ?
+		ORDER BY packages.package_id DESC";
+			$query = $this->db->query($sql, $this->session->userdata()['id']);
+		}
+
 		return $query->result_array();
 	}
 

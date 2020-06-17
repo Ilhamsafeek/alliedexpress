@@ -7,15 +7,18 @@ class Dashboard extends Admin_Controller
 	public function __construct()
 	{
 		parent::__construct();
-	
 	}
 
 	public function index()
 	{
-		$this->render_template('dashboard');
+		if ($this->session->userdata()['type'] == 'admin') {
+			$this->render_template('dashboard');
+		} else {
+			redirect('packages/', 'refresh');
+		}
 	}
 
-	
+
 
 	public function notfound()
 	{

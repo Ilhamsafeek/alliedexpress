@@ -47,8 +47,10 @@
                 <div class="card">
 
                     <div class="card-header d-block">
-                        <button type="button" class="btn btn-success" data-toggle="modal" data-target="#addModal"><i class="ik ik-plus"></i>New Payment</button>
+                        <?php if ($this->session->userdata()['type'] == 'admin') : ?>
 
+                            <button type="button" class="btn btn-success" data-toggle="modal" data-target="#addModal"><i class="ik ik-plus"></i>New Payment</button>
+                        <?php endif; ?>
                         <div class="modal fade" id="addModal" role="dialog" aria-labelledby="demoModalLabel" aria-hidden="true">
                             <div class="modal-dialog modal-lg" role="document">
                                 <div class="modal-content">
@@ -185,7 +187,7 @@
                                                                 </tr>
 
                                                                 <tr>
-                                                                    <th>Subtotal:</th>
+                                                                    <th>Total Payment:</th>
                                                                     <td id="total">0</td>
                                                                 </tr>
                                                             </tbody>
@@ -215,7 +217,9 @@
                                     <tr>
                                         <th></th>
                                         <th>Date</th>
-                                        <th>Customer</th>
+                                        <?php if ($this->session->userdata()['type'] == 'admin') : ?>
+                                            <th>Customer</th>
+                                        <?php endif; ?>
                                         <th>Receipt No</th>
                                         <th>Way Bills</th>
                                         <th>Amount</th>
@@ -230,15 +234,15 @@
                                         <tr>
                                             <th></th>
                                             <td><?php echo $customer_payment_data[$key]['date']; ?></td>
-
-                                            <td><?php echo $customer_payment_data[$key]['name']; ?></td>
+                                            <?php if ($this->session->userdata()['type'] == 'admin') : ?>
+                                                <td><?php echo $customer_payment_data[$key]['name']; ?></td>
+                                            <?php endif; ?>
                                             <td><?php echo $customer_payment_data[$key]['customer_payment_receipt_no']; ?></td>
 
                                             <?php
                                             $packages = array();
                                             foreach ($package_data as $index => $value) {
                                                 $package_data[$index]['way_bill_no'];
-
 
                                                 $packageArray = explode(',', $customer_payment_data[$key]['packages']);
 
@@ -261,10 +265,13 @@
 
                                             <td>
                                                 <div class="table-actions">
-                                                    <!-- <a href="#" data-toggle="modal" data-target="#printModal<?php echo $customer_payment_data[$key]['customer_payment_id']; ?>"><i class="ik ik-printer"></i></a> -->
+                                                    <a href="#" data-toggle="modal" data-target="#printModal<?php echo $customer_payment_data[$key]['customer_payment_id']; ?>"><i class="ik ik-printer"></i></a>
 
                                                     <!-- <a href="#" data-toggle="modal" data-target="#editModal<?php echo $customer_payment_data[$key]['customer_payment_id']; ?>"><i class="ik ik-edit-2"></i></a> -->
-                                                    <a href="#" data-toggle="modal" data-target="#deleteModal<?php echo $customer_payment_data[$key]['customer_payment_id']; ?>"><i class="ik ik-trash-2"></i></a>
+                                                    <?php if ($this->session->userdata()['type'] == 'admin') : ?>
+
+                                                        <a href="#" data-toggle="modal" data-target="#deleteModal<?php echo $customer_payment_data[$key]['customer_payment_id']; ?>"><i class="ik ik-trash-2"></i></a>
+                                                    <?php endif; ?>
                                                 </div>
                                             </td>
 
@@ -277,126 +284,120 @@
                                                             <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                                                         </div>
 
-                                                        <div class="modal-body">
-                                                            <div class="card">
-                                                                <div class="card-header row">
-                                                                    <div class="col col-sm-3">
-                                                                        <div class="dropdown d-inline-block">
-                                                                            <a class="btn-icon checkbox-dropdown dropdown-toggle" href="#" id="moreDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></a>
-                                                                            <div class="dropdown-menu" aria-labelledby="moreDropdown">
-                                                                                <a class="dropdown-item" id="checkbox_select_all" href="javascript:void(0);">Select All</a>
-                                                                                <a class="dropdown-item" id="checkbox_deselect_all" href="javascript:void(0);">Deselect All</a>
-                                                                            </div>
-                                                                        </div>
-                                                                        <div class="card-options d-inline-block">
-                                                                            <a href="#"><i class="ik ik-inbox"></i></a>
-                                                                            <a href="#"><i class="ik ik-plus"></i></a>
-                                                                            <a href="#"><i class="ik ik-rotate-cw"></i></a>
-                                                                            <div class="dropdown d-inline-block">
-                                                                                <a class="nav-link dropdown-toggle" href="#" id="moreDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="ik ik-more-horizontal"></i></a>
-                                                                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="moreDropdown">
-                                                                                    <a class="dropdown-item" href="#">Action</a>
-                                                                                    <a class="dropdown-item" href="#">More Action</a>
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="col col-sm-6">
-                                                                        <div class="card-search with-adv-search dropdown">
-                                                                            <form action="">
-                                                                                <input type="text" class="form-control" placeholder="Search.." required="">
-                                                                                <button type="submit" class="btn btn-icon"><i class="ik ik-search"></i></button>
-                                                                                <button type="button" id="adv_wrap_toggler" class="adv-btn ik ik-chevron-down dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></button>
-                                                                                <div class="adv-search-wrap dropdown-menu dropdown-menu-right" aria-labelledby="adv_wrap_toggler">
-                                                                                    <div class="form-group">
-                                                                                        <input type="text" class="form-control" placeholder="Full Name">
-                                                                                    </div>
-                                                                                    <div class="form-group">
-                                                                                        <input type="email" class="form-control" placeholder="Email">
-                                                                                    </div>
-                                                                                    <button class="btn btn-theme">Search</button>
-                                                                                </div>
-                                                                            </form>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="col col-sm-3">
-                                                                        <div class="card-options text-right">
-                                                                            <span class="mr-5">1 - 50 of 2,500</span>
-                                                                            <a href="#"><i class="ik ik-chevron-left"></i></a>
-                                                                            <a href="#"><i class="ik ik-chevron-right"></i></a>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                                <div class="card-body p-0">
-                                                                    <div class="list-item-wrap">
-                                                                        <div class="list-item">
-                                                                            <div class="item-inner">
-                                                                                <label class="custom-control custom-checkbox">
-                                                                                    <input type="checkbox" class="custom-control-input" id="item_checkbox" name="item_checkbox" value="option1">
-                                                                                    <span class="custom-control-label">&nbsp;</span>
-                                                                                </label>
-                                                                                <div class="list-title"><a href="javascript:void(0)">Lorem Ipsum is simply dumm dummy text of the printing and typesetting industry.</a></div>
-                                                                                <div class="list-actions">
-                                                                                    <a href="#"><i class="ik ik-eye"></i></a>
-                                                                                    <a href="#"><i class="ik ik-inbox"></i></a>
-                                                                                    <a href="#"><i class="ik ik-edit-2"></i></a>
-                                                                                    <a href="#"><i class="ik ik-trash-2"></i></a>
-                                                                                </div>
-                                                                            </div>
+                                                        <div id="printable_receipt" class="modal-body">
 
-                                                                            <div class="qickview-wrap">
-                                                                                <div class="desc">
-                                                                                    <p>Fusce suscipit turpis a dolor posuere ornare at a ante. Quisque nec libero facilisis, egestas tortor eget, mattis dui. Curabitur viverra laoreet ligula at hendrerit. Nullam sollicitudin maximus leo, vel pulvinar orci semper id. Donec vehicula tempus enim a facilisis. Proin dignissim porttitor sem, sed pulvinar tortor gravida vitae.</p>
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                        <div class="list-item">
-                                                                            <div class="item-inner">
-                                                                                <label class="custom-control custom-checkbox">
-                                                                                    <input type="checkbox" class="custom-control-input" id="item_checkbox" name="item_checkbox" value="option2">
-                                                                                    <span class="custom-control-label">&nbsp;</span>
-                                                                                </label>
-                                                                                <div class="list-title"><a href="javascript:void(0)">Aenean eu pharetra arcu, vitae elementum sem. Sed non ligula molestie, finibus lacus at, suscipit mi. Nunc luctus lacus vel felis blandit, eu finibus augue tincidunt.</a></div>
-                                                                                <div class="list-actions">
-                                                                                    <a href="#"><i class="ik ik-eye"></i></a>
-                                                                                    <a href="#"><i class="ik ik-inbox"></i></a>
-                                                                                    <a href="#"><i class="ik ik-edit-2"></i></a>
-                                                                                    <a href="#"><i class="ik ik-trash-2"></i></a>
-                                                                                </div>
-                                                                            </div>
-                                                                            <div class="qickview-wrap">
-                                                                                <div class="desc">
-                                                                                    <p>Fusce suscipit turpis a dolor posuere ornare at a ante. Quisque nec libero facilisis, egestas tortor eget, mattis dui. Curabitur viverra laoreet ligula at hendrerit. Nullam sollicitudin maximus leo, vel pulvinar orci semper id. Donec vehicula tempus enim a facilisis. Proin dignissim porttitor sem, sed pulvinar tortor gravida vitae.</p>
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                        <div class="list-item">
-                                                                            <div class="item-inner">
-                                                                                <label class="custom-control custom-checkbox">
-                                                                                    <input type="checkbox" class="custom-control-input" id="item_checkbox" name="item_checkbox" value="option3">
-                                                                                    <span class="custom-control-label">&nbsp;</span>
-                                                                                </label>
-                                                                                <div class="list-title"><a href="javascript:void(0)">Donec lectus augue, suscipit in sodales sit amet, semper sit amet enim. Duis pretium, nisi id pretium ornare, tortor nibh sodales tellus.</a></div>
-                                                                                <div class="list-actions">
-                                                                                    <a href="#"><i class="ik ik-eye"></i></a>
-                                                                                    <a href="#"><i class="ik ik-inbox"></i></a>
-                                                                                    <a href="#"><i class="ik ik-edit-2"></i></a>
-                                                                                    <a href="#"><i class="ik ik-trash-2"></i></a>
-                                                                                </div>
-                                                                            </div>
-                                                                            <div class="qickview-wrap">
-                                                                                <div class="desc">
-                                                                                    <p>Fusce suscipit turpis a dolor posuere ornare at a ante. Quisque nec libero facilisis, egestas tortor eget, mattis dui. Curabitur viverra laoreet ligula at hendrerit. Nullam sollicitudin maximus leo, vel pulvinar orci semper id. Donec vehicula tempus enim a facilisis. Proin dignissim porttitor sem, sed pulvinar tortor gravida vitae.</p>
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
+                                                            <div class="row invoice-info">
+                                                                <div class="col-sm-4 invoice-col">
+                                                                    From
+                                                                    <address>
+                                                                        <strong>AlliedExpress,</strong><br>https://alliedexpresslk.com/ <br>Phone: 0777 912 500
+                                                                    </address>
+                                                                </div>
+                                                                <div class="col-sm-4 invoice-col">
+                                                                    To
+                                                                    <address>
+                                                                        <strong><?php echo $customer_payment_data[$key]['name']; ?></strong><br><?php echo $customer_payment_data[$key]['address']; ?><br>Email: <?php echo $customer_payment_data[$key]['email']; ?>
+                                                                    </address>
+                                                                </div>
+                                                                <div class="col-sm-4 invoice-col">
+                                                                    <b>Receipt No #<?php echo $customer_payment_data[$key]['customer_payment_receipt_no']; ?></b><br>
+                                                                    <br>
+                                                                    <b>Date:</b> <?php echo $customer_payment_data[$key]['date']; ?><br>
+
                                                                 </div>
                                                             </div>
+                                                            <div class="row" style="background-color: #f5f5f5 !important;">
+                                                                <div class="col-md-3">
+                                                                    <p>Way Bill No</p>
+                                                                </div>
+                                                                <div class="col-md-3">
+                                                                    <p>Status</p>
+                                                                </div>
+                                                                <div class="col-md-3">
+                                                                    <p>Amount</p>
+                                                                </div>
+                                                                <div class="col-md-3">
+                                                                    <p>Courier Charge</p>
+                                                                </div>
+
+                                                            </div>
+                                                            <?php
+                                                            foreach ($package_data as $index => $value) {
+                                                                $package_data[$index]['way_bill_no'];
+
+                                                                $packageArray = explode(',', $customer_payment_data[$key]['packages']);
+
+                                                                foreach ($packageArray as $key1 => $package_id) {
+                                                                    if ($package_id == $package_data[$index]['package_id']) {
+                                                                        array_push($packages, $package_data[$index]['way_bill_no']);
+                                                            ?>
+                                                                        <div class="row">
+                                                                            <div class="col-md-3">
+                                                                                <p><span class="badge badge-primary"><?php echo $package_data[$index]['way_bill_no']; ?></span></p>
+                                                                            </div>
+                                                                            <div class="col-md-3">
+                                                                                <p><?php echo $package_data[$index]['delivery_status']; ?></p>
+                                                                            </div>
+                                                                            <div class="col-md-3">
+                                                                                <p><?php
+                                                                                    if ($package_data[$index]['delivery_status'] != 'returned') {
+                                                                                        echo $package_data[$index]['cod_amount'];
+                                                                                    } else {
+                                                                                        echo '0';
+                                                                                    }
+
+
+                                                                                    ?></p>
+                                                                            </div>
+                                                                            <div class="col-md-3">
+                                                                                <p><?php echo $package_data[$index]['courier_charge']; ?></p>
+                                                                            </div>
+
+                                                                        </div>
+                                                            <?php
+                                                                    }
+                                                                }
+                                                            }  ?>
+                                                            <hr>
+                                                            <div class="row">
+                                                                <div class="col-md-6">
+
+                                                                </div>
+                                                                <div class="col-md-5">
+                                                                    <div class="row">
+                                                                        <div class="col-md-6">
+                                                                            Total COD:
+                                                                        </div>
+                                                                        <div class="col-md-6" style="float: right;">
+                                                                            <strong style="float: right;"><?php echo $customer_payment_data[$key]['sub_total']; ?></strong>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="row">
+                                                                        <div class="col-md-6">
+                                                                            Total Courier Charge:
+                                                                        </div>
+                                                                        <div class="col-md-6">
+                                                                            <strong style="float: right;"><?php echo $customer_payment_data[$key]['total_courier']; ?></strong>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="row">
+                                                                        <div class="col-md-6">
+                                                                            Total Payment:
+                                                                        </div>
+                                                                        <div class="col-md-6" style="float: right;">
+                                                                            <strong style="float: right;"><?php echo $customer_payment_data[$key]['total']; ?></strong>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-md-1">
+
+                                                                </div>
+                                                            </div>
+
                                                         </div>
                                                         <div class="modal-footer">
                                                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                                            <button type="submit" class="btn btn-primary">Print Receipt</button>
+                                                            <button type="submit" class="btn btn-primary" onclick="printDiv()">Print Receipt</button>
                                                         </div>
 
 
@@ -497,6 +498,22 @@
         document.getElementById('sub_total').value = subTotal;
         document.getElementById('total_courier').value = totalCourier;
         document.getElementById('total_amount').value = Total;
+
+    }
+</script>
+
+<script>
+    function printDiv() {
+        var printContents = document.getElementById('printable_receipt').innerHTML;
+        var originalContents = document.body.innerHTML;
+
+        document.body.innerHTML = printContents;
+
+        window.print();
+
+        document.body.innerHTML = originalContents;
+
+        location.reload();
 
     }
 </script>
