@@ -7,7 +7,6 @@
                         <i class="ik ik-triangle bg-blue"></i>
                         <div class="d-inline">
                             <h5>Zone</h5>
-                            <span>Area of the Receiver</span>
                         </div>
                     </div>
                 </div>

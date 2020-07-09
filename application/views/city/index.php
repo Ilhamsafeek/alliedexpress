@@ -7,7 +7,6 @@
                         <i class="ik ik-git-merge bg-blue"></i>
                         <div class="d-inline">
                             <h5>City</h5>
-                            <span>Sub category under a zone</span>
                         </div>
                     </div>
                 </div>
@@ -139,7 +138,7 @@
                                                                 <div class="col-sm-8">
                                                                     <div class="form-group">
                                                                         <label class="col-form-label" for="description">Zone</label>
-                                                                        <select class="form-control select2" data-placeholder="Choose zone" id="zone_id" name="zone_id" style="width:100%;" required>
+                                                                        <select class="form-control select2" data-placeholder="Choose zone" id="zone_id_<?php echo $city_data[$key]['city_id']; ?>" name="zone_id" style="width:100%;" required>
                                                                             <?php foreach ($zone_data as $k => $v) : ?>
                                                                                 <option value="<?php echo $v['zone_id']; ?>" <?php if ($v['zone_id'] == $city_data[$key]['zone_id']) {
                                                                                                                                     echo 'selected';
@@ -212,5 +211,7 @@
     $(document).ready(function() {
         $("#cityMainMenu").addClass('active');
         $(".select2").select2();
+
+        $("#zone_id").select2();
     });
 </script>

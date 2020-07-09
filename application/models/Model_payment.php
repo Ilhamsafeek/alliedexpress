@@ -69,15 +69,21 @@ class Model_payment extends CI_Model
 	public function getAgentSettlementData($payment_id = null)
 	{
 		if ($payment_id) {
-			$sql = "SELECT * FROM agent_to_office_settlement WHERE settlement_id = ?";
+			$sql = "SELECT * FROM agent_to_office_settlement 
+			INNER JOIN users ON agent_to_office_settlement.agent_id=users.user_id  
+			WHERE agent_to_office_settlement.settlement_id = ?";
 			$query = $this->db->query($sql, array($payment_id,));
 			return $query->row_array();
 		}
-		$sql = "SELECT * FROM agent_to_office_settlement ORDER BY settlement_id DESC";
+		$sql = "SELECT * FROM agent_to_office_settlement 
+		INNER JOIN users ON agent_to_office_settlement.agent_id=users.user_id 
+		ORDER BY agent_to_office_settlement.settlement_id DESC";
 		$query = $this->db->query($sql);
 
 		if ($this->session->userdata()['type'] == 'agent') {
-			$sql = "SELECT * FROM agent_to_office_settlement WHERE agent_id = ? ORDER BY settlement_id DESC";
+			$sql = "SELECT * FROM agent_to_office_settlement
+			INNER JOIN users ON agent_to_office_settlement.agent_id=users.user_id 
+			 WHERE agent_to_office_settlement.agent_id = ? ORDER BY agent_to_office_settlement.settlement_id DESC";
 			$query = $this->db->query($sql, $this->session->userdata()['id']);
 		}
 
@@ -90,10 +96,8 @@ class Model_payment extends CI_Model
 		$date = date_create();
 
 		$data = array(
-			'date' => $this->input->post('date'),
+			'settlement_date' => $this->input->post('date'),
 			'packages' => $this->input->post('packages'),
-			'sub_total' => $this->input->post('sub_total'),
-			'total_courier' => $this->input->post('total_courier'),
 			'total' => $this->input->post('total'),
 			'settlement_receipt_no' => date_timestamp_get($date),
 			'agent_id' => $this->session->userdata()['id']

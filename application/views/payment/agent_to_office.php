@@ -6,8 +6,7 @@
                     <div class="page-header-title">
                         <i class="ik ik-navigation-2 bg-blue"></i>
                         <div class="d-inline">
-                            <h5>Agent to Head Office</h5>
-                            <span>Sending payments to head office from agent</span>
+                            <h5>Agent Settlements</h5>
                         </div>
                     </div>
                 </div>
@@ -49,10 +48,10 @@
                     <div class="card-header d-block">
                         <?php
 
-                        // if ($this->session->userdata()['type'] != 'admin') : 
+                        if ($this->session->userdata()['type'] != 'admin') :
                         ?>
-                        <button type="button" class="btn btn-success" data-toggle="modal" data-target="#addModal"><i class="ik ik-plus"></i>New Settlement</button>
-
+                            <button type="button" class="btn btn-success" data-toggle="modal" data-target="#addModal"><i class="ik ik-plus"></i>New Settlement</button>
+                        <?php endif; ?>
                         <div class="modal fade" id="addModal" role="dialog" aria-labelledby="demoModalLabel" aria-hidden="true">
                             <div class="modal-dialog modal-lg" role="document">
                                 <div class="modal-content">
@@ -72,7 +71,7 @@
                                                 <div class="col-sm-3">
                                                     <div class="form-group">
                                                         <label class="font-normal">Date</label>
-                                                        <input name="date" type="text" class="form-control datetimepicker-input" id="datepicker" data-toggle="datetimepicker" data-target="#datepicker" value="<?php echo date('d/m/Y'); ?>">
+                                                        <input name="date" type="text" class="form-control datetimepicker-input" id="datepicker" data-toggle="datetimepicker" data-target="#datepicker" value="<?php echo date("Y-m-d"); ?>">
                                                     </div>
                                                 </div>
 
@@ -92,7 +91,7 @@
                                                                 <th>Way Bill No</th>
                                                                 <th>Customer</th>
                                                                 <th>COD Amount</th>
-                                                                <th>Courier Charge</th>
+                                                                <!-- <th>Courier Charge</th> -->
                                                                 <th>Delivery Status</th>
 
                                                             </tr>
@@ -136,7 +135,7 @@
                                                                         <td><?php echo $package_data[$key]['way_bill_no']; ?></td>
                                                                         <td><?php echo $package_data[$key]['name']; ?></td>
                                                                         <td class="cod_amount"><?php echo $package_data[$key]['cod_amount']; ?></td>
-                                                                        <td class="courier_charge"><?php echo $package_data[$key]['courier_charge']; ?></td>
+                                                                        <!-- <td class="courier_charge"><?php echo $package_data[$key]['courier_charge']; ?></td> -->
 
                                                                         <td class="delivery_status">
                                                                             <a href="#" data-toggle="modal" data-target="#statusModal<?php echo $package_data[$key]['package_id']; ?>">
@@ -168,14 +167,14 @@
                                                     <div class="table-responsive">
                                                         <table class="table">
                                                             <tbody>
-                                                                <tr>
+                                                                <!-- <tr>
                                                                     <th style="width:50%">Total COD:</th>
                                                                     <td id="subTotal">0</td>
-                                                                </tr>
-                                                                <tr>
+                                                                </tr> -->
+                                                                <!-- <tr>
                                                                     <th>Total Courier Charge</th>
                                                                     <td id="totalCourier">0</td>
-                                                                </tr>
+                                                                </tr> -->
 
                                                                 <tr>
                                                                     <th>Total Payment:</th>
@@ -186,8 +185,8 @@
                                                     </div>
                                                 </div>
                                                 <input type="hidden" id="packages" name="packages">
-                                                <input type="hidden" id="sub_total" name="sub_total">
-                                                <input type="hidden" id="total_courier" name="total_courier">
+                                                <!-- <input type="hidden" id="sub_total" name="sub_total"> -->
+                                                <!-- <input type="hidden" id="total_courier" name="total_courier"> -->
                                                 <input type="hidden" id="total_amount" name="total">
                                             </div>
                                         </div>
@@ -208,12 +207,16 @@
                                     <tr>
                                         <th></th>
                                         <th>Date</th>
+                                        <?php if ($this->session->userdata()['type'] == 'admin') : ?>
+
+                                            <th>Agent Name</th>
+                                        <?php endif; ?>
                                         <th>Receipt No</th>
-                                        <th>Way Bills</th>
-                                        <th>Amount</th>
+
+                                        <th style="text-align: right;">Amount</th>
 
 
-                                        <th></th>
+                                        <th style="text-align: right;">View / Print</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -221,8 +224,11 @@
                                     <?php foreach ($settlement_data as $key => $value) { ?>
                                         <tr>
                                             <th></th>
-                                            <td><?php echo $settlement_data[$key]['date']; ?></td>
+                                            <td><?php echo $settlement_data[$key]['settlement_date']; ?></td>
+                                            <?php if ($this->session->userdata()['type'] == 'admin') : ?>
 
+                                                <td><?php echo $settlement_data[$key]['name']; ?></td>
+                                            <?php endif; ?>
                                             <td><?php echo $settlement_data[$key]['settlement_receipt_no']; ?></td>
 
                                             <?php
@@ -240,15 +246,15 @@
                                                 }
                                             }  ?>
 
-                                            <td><?php
-                                                foreach ($packages as $waybill_id => $waybill_no) { ?>
+                                            <!-- <td><?php
+                                                        foreach ($packages as $waybill_id => $waybill_no) { ?>
                                                     <span class="badge badge-primary"><?php echo $waybill_no; ?></span>
                                                 <?php }
 
                                                 ?>
 
-                                            </td>
-                                            <td><?php echo $settlement_data[$key]['total']; ?></td>
+                                            </td> -->
+                                            <td style="text-align: right;"><?php echo number_format($settlement_data[$key]['total'], 2); ?></td>
 
                                             <td>
                                                 <div class="table-actions">
@@ -273,31 +279,34 @@
 
                                                             <div class="row invoice-info">
                                                                 <div class="col-sm-4 invoice-col">
-
+                                                                <address>
+                                                                        <strong>Agent: <?php echo $settlement_data[$key]['name']; ?></strong>
+                                                                    </address>
                                                                 </div>
                                                                 <div class="col-sm-4 invoice-col">
-
+                                                                
+                                                                   
                                                                 </div>
                                                                 <div class="col-sm-4 invoice-col">
                                                                     <b>Settlement Receipt No #<?php echo $settlement_data[$key]['settlement_receipt_no']; ?></b><br>
                                                                     <br>
-                                                                    <b>Date:</b> <?php echo $settlement_data[$key]['date']; ?><br>
+                                                                    <b>Date:</b> <?php echo $settlement_data[$key]['settlement_date']; ?><br>
 
                                                                 </div>
                                                             </div>
                                                             <div class="row" style="background-color: #f5f5f5 !important;">
-                                                                <div class="col-md-3">
+                                                                <div class="col-md-4">
                                                                     <p>Way Bill No</p>
                                                                 </div>
-                                                                <div class="col-md-3">
+                                                                <div class="col-md-4">
                                                                     <p>Status</p>
                                                                 </div>
-                                                                <div class="col-md-3">
+                                                                <div class="col-md-4" style="text-align:right; padding-right:8%">
                                                                     <p>Amount</p>
                                                                 </div>
-                                                                <div class="col-md-3">
+                                                                <!-- <div class="col-md-3" style="text-align:right; padding-right:10%">
                                                                     <p>Courier Charge</p>
-                                                                </div>
+                                                                </div> -->
 
                                                             </div>
                                                             <?php
@@ -311,26 +320,26 @@
                                                                         array_push($packages, $package_data[$index]['way_bill_no']);
                                                             ?>
                                                                         <div class="row">
-                                                                            <div class="col-md-3">
-                                                                                <p><span class="badge badge-primary"><?php echo $package_data[$index]['way_bill_no']; ?></span></p>
+                                                                            <div class="col-md-4">
+                                                                                <p><span><?php echo $package_data[$index]['way_bill_no']; ?></span></p>
                                                                             </div>
-                                                                            <div class="col-md-3">
+                                                                            <div class="col-md-4">
                                                                                 <p><?php echo $package_data[$index]['delivery_status']; ?></p>
                                                                             </div>
-                                                                            <div class="col-md-3">
+                                                                            <div class="col-md-4" style="text-align:right; padding-right:10%">
                                                                                 <p><?php
                                                                                     if ($package_data[$index]['delivery_status'] != 'returned') {
-                                                                                        echo $package_data[$index]['cod_amount'];
+                                                                                        echo number_format($package_data[$index]['cod_amount'], 2);
                                                                                     } else {
-                                                                                        echo '0';
+                                                                                        echo number_format('0', 2);
                                                                                     }
 
 
                                                                                     ?></p>
                                                                             </div>
-                                                                            <div class="col-md-3">
-                                                                                <p><?php echo $package_data[$index]['courier_charge']; ?></p>
-                                                                            </div>
+                                                                            <!-- <div class="col-md-3" style="text-align:right; padding-right:10%">
+                                                                                <p><?php echo number_format($package_data[$index]['courier_charge'], 2); ?></p>
+                                                                            </div> -->
 
                                                                         </div>
                                                             <?php
@@ -343,28 +352,28 @@
 
                                                                 </div>
                                                                 <div class="col-md-5">
-                                                                    <div class="row">
+                                                                    <!-- <div class="row">
                                                                         <div class="col-md-6">
                                                                             Total COD:
                                                                         </div>
                                                                         <div class="col-md-6" style="float: right;">
-                                                                            <strong style="float: right;"><?php echo $settlement_data[$key]['sub_total']; ?></strong>
+                                                                            <strong style="float: right;"><?php echo number_format($settlement_data[$key]['sub_total'], 2); ?></strong>
                                                                         </div>
-                                                                    </div>
-                                                                    <div class="row">
+                                                                    </div> -->
+                                                                    <!-- <div class="row">
                                                                         <div class="col-md-6">
                                                                             Total Courier Charge:
                                                                         </div>
                                                                         <div class="col-md-6">
-                                                                            <strong style="float: right;"><?php echo $settlement_data[$key]['total_courier']; ?></strong>
+                                                                            <strong style="float: right;"><?php echo number_format($settlement_data[$key]['total_courier'], 2); ?></strong>
                                                                         </div>
-                                                                    </div>
+                                                                    </div> -->
                                                                     <div class="row">
                                                                         <div class="col-md-6">
-                                                                            Total Payment:
+                                                                            Total Settlement:
                                                                         </div>
                                                                         <div class="col-md-6" style="float: right;">
-                                                                            <strong style="float: right;"><?php echo $settlement_data[$key]['total']; ?></strong>
+                                                                            <strong style="float: right;"><?php echo number_format($settlement_data[$key]['total'], 2); ?></strong>
                                                                         </div>
                                                                     </div>
                                                                 </div>
@@ -445,11 +454,11 @@
         var packages = [];
         $('table #row-selector:checked').each(function() {
 
-            var subCourier = $(this).closest('tr').find('td.courier_charge').text();
+            // var subCourier = $(this).closest('tr').find('td.courier_charge').text();
 
-            totalCourier = totalCourier + parseFloat(subCourier);
+            // totalCourier = totalCourier + parseFloat(subCourier);
 
-            var returnedCourier = $(this).closest('tr').find('td.delivery_status a span').text();
+            // var returnedCourier = $(this).closest('tr').find('td.delivery_status a span').text();
             var subValue = $(this).closest('tr').find('td.cod_amount').text();
 
             subTotal = subTotal + parseFloat(subValue);
@@ -457,14 +466,15 @@
             var package = $(this).closest('tr').find('td.package_id').text();
             packages.push(package);
         });
-        Total = subTotal + totalCourier;
-        document.getElementById('subTotal').innerHTML = subTotal;
-        document.getElementById('totalCourier').innerHTML = totalCourier;
+        Total = subTotal 
+        // + totalCourier;
+        // document.getElementById('subTotal').innerHTML = subTotal;
+        // document.getElementById('totalCourier').innerHTML = totalCourier;
         document.getElementById('total').innerHTML = Total;
 
         document.getElementById('packages').value = packages;
-        document.getElementById('sub_total').value = subTotal;
-        document.getElementById('total_courier').value = totalCourier;
+        // document.getElementById('sub_total').value = subTotal;
+        // document.getElementById('total_courier').value = totalCourier;
         document.getElementById('total_amount').value = Total;
 
     }

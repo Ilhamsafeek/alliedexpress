@@ -4,6 +4,7 @@
 
         <div class="row p-4 text-center text-white text-lg bg-dark rounded-top">
             <div class="col-md-4">
+
             </div>
             <div class="col-md-4">
                 <input id="way_bill_search" type="text" class="form-control" placeholder="Way Bill Number" onkeyup="onCustomerChanged(this)">
@@ -16,9 +17,9 @@
 
         </div>
         <hr>
-        
+
         <div class="d-flex flex-wrap flex-sm-nowrap justify-content-between py-3 px-2 bg-secondary">
-            <div class="w-100 text-center py-1 px-2"><span class="text-medium">Status:</span> <strong><span id="status" class="text-medium"> -</span></strong></div>
+            <div class="w-100 text-center py-1 px-2"><span class="text-medium">Status:</span> <strong><span id="status" class="text-medium"> -</span> <span id="status_date" class="text-medium"> -</span></strong></div>
 
         </div>
 
@@ -72,6 +73,8 @@
         document.getElementById('receiver').innerHTML = '-';
         document.getElementById('destination').innerHTML = '-';
         document.getElementById('collected_date').innerHTML = '';
+        document.getElementById('status_date').innerHTML = '';
+
 
         document.getElementById("collected").classList.remove("completed");
         document.getElementById("received").classList.remove("completed");
@@ -87,14 +90,17 @@
         var package = package_data.filter(function(package) {
             return package.way_bill_no == way_bill.value;
         });
-
         document.getElementById('status').innerHTML = package[0]['delivery_status'];
-        document.getElementById('sender').innerHTML = package[0]['name'];
+        if (package[0]['delivery_status'] == 're scheduled') {
+            document.getElementById('status_date').innerHTML = "Date: " + package[0]['rescheduled_date'];
+
+        }
+        document.getElementById('sender').innerHTML = package[0]['company'];
         document.getElementById('receiver').innerHTML = package[0]['receiver_name'];
         document.getElementById('destination').innerHTML = package[0]['city'] + ' / ' + package[0]['zone'];
 
         document.getElementById('collected_date').innerHTML = package[0]['date'];
-        
+
         if (package[0]['delivery_status'] == 'collected') {
             $("#collected").addClass('completed');
 
@@ -134,10 +140,11 @@
         } else if (package[0]['delivery_status'] == 'returned') {
             $("#collected").addClass('completed');
             $("#received").addClass('completed');
+            $("#dispatched").addClass('completed');
 
             $("#status").addClass('badge badge-danger');
 
-        }else if (package[0]['delivery_status'] == 'returned to head office') {
+        } else if (package[0]['delivery_status'] == 'returned to head office') {
             $("#collected").addClass('completed');
             $("#received").addClass('completed');
 

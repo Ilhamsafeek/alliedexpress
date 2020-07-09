@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>AlliedExpress - Everything atYour Doorstep</title>
+    <title>AlliedExpress - Everything at Your Doorstep</title>
     <meta name="description" content="">
     <meta name="keywords" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -32,6 +32,8 @@
     <link rel="stylesheet" href="<?php echo base_url('assets/plugins/owl.carousel/dist/assets/owl.theme.default.min.css'); ?>">
     <link rel="stylesheet" href="<?php echo base_url('assets/plugins/select2/dist/css/select2.min.css'); ?>">
     <link rel="stylesheet" href="<?php echo base_url('assets/plugins/bootstrap-slider/dist/css/bootstrap-slider.min.css'); ?>">
+    <link href="<?php echo base_url('assets/css/chain/morris.css'); ?>" rel="stylesheet">
+
     <!-- timeline -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pixeden-stroke-7-icon@1.2.3/pe-icon-7-stroke/dist/pe-icon-7-stroke.min.css">
 
@@ -61,10 +63,17 @@
     <script src="<?php echo base_url('assets/js/tables.js'); ?>"></script>
     <script src="<?php echo base_url('assets/js/widgets.js'); ?>"></script>
     <script src="<?php echo base_url('assets/js/charts.js'); ?>"></script>
+    <script src="<?php echo base_url('assets/js/chain/charts.js'); ?>"></script>
+
     <script src="<?php echo base_url('assets/dist/js/theme.min.js'); ?>"></script>
     <script src="<?php echo base_url('assets/js/datatables.js'); ?>"></script>
     <script src="<?php echo base_url('assets/plugins/select2/dist/js/select2.min.js'); ?>"></script>
     <script src="<?php echo base_url('assets/plugins/bootstrap-slider/dist/bootstrap-slider.min.js'); ?>"></script>
+    <script src="<?php echo base_url('assets/plugins/flot-charts/jquery.flot.tooltip.min.js'); ?>"></script>
+    <script src="<?php echo base_url('assets/js/chain/morris.min.js'); ?>"></script>
+
+    <script src="https://canvasjs.com/assets/script/jquery.canvasjs.min.js"></script>
+
 
 </head>
 

@@ -7,7 +7,6 @@
                         <i class="ik ik-command bg-blue"></i>
                         <div class="d-inline">
                             <h5>Agents</h5>
-                            <span>The Party who can deal delivery of packages</span>
                         </div>
                     </div>
                 </div>

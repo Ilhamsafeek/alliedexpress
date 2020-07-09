@@ -67,12 +67,15 @@
                                        <a href="<?php echo base_url('payment/customer'); ?>"><i class="ik ik-check-circle"></i><span>Customer Payment</span></a>
                                    </div>
                                <?php endif; ?>
-                               <?php if ($this->session->userdata()['type'] != 'customer' && $this->session->userdata()['type'] != 'rider') : ?>
+                               <?php if ($this->session->userdata()['type'] != 'customer' && $this->session->userdata()['type'] != 'rider' && $this->session->userdata()['type'] != 'staff') : ?>
 
                                    <div class="app-item">
                                        <a href="<?php echo base_url('payment/agenttooffice'); ?>"><i class="ik ik-navigation-2"></i><span>Agent to head office</span></a>
                                    </div>
                                <?php endif; ?>
+                               <div class="app-item">
+                                       <a href="<?php echo base_url('track'); ?>"><i class="ik ik-git-commit"></i><span>Track</span></a>
+                                   </div>
 
                            </div>
                        </div>
@@ -85,6 +88,9 @@
        <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
 
        <script type="text/javascript">
+           function currencyFormat(num) {
+               return num.toFixed(2).replace(/(\d)(?=(\d{3})+(?!\d))/g, '1,')
+           }
            (function(b, o, i, l, e, r) {
                b.GoogleAnalyticsObject = l;
                b[l] || (b[l] =

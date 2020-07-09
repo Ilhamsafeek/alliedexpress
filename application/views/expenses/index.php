@@ -7,7 +7,6 @@
                         <i class="ik ik-minus-circle bg-blue"></i>
                         <div class="d-inline">
                             <h5>Other Expenses</h5>
-                            <span>Additional expenses to the business</span>
                         </div>
                     </div>
                 </div>
@@ -45,66 +44,93 @@
             <div class="col-sm-12">
                 <div class="card">
 
-                    <div class="card-header d-block">
-                        <button type="button" class="btn btn-success" data-toggle="modal" data-target="#addModal"><i class="ik ik-plus"></i>Add New Expense</button>
+                    <div class="card-header row">
+                       
+                            <div class="col col-sm-3">
 
-                        <div class="modal fade" id="addModal" role="dialog" aria-labelledby="demoModalLabel" aria-hidden="true">
-                            <div class="modal-dialog" role="document">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <h5 class="modal-title" id="demoModalLabel">Add New Expense</h5>
-                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                                    </div>
+                                <button type="button" class="btn btn-success" data-toggle="modal" data-target="#addModal"><i class="ik ik-plus"></i>Add New Expense</button>
 
-
-                                    <form role="form" id="createForm" action="<?php echo base_url('expenses/createexpense') ?>" method="post">
-
-                                        <?php echo validation_errors(); ?>
-                                        <div class="modal-body">
-
-                                            <div class="row">
-
-                                                <div class="col-sm-12">
-                                                    <div class="form-group">
-                                                        <label class="font-normal">Date</label>
-                                                        <input name="date" type="text" class="form-control datetimepicker-input" id="datepicker" data-toggle="datetimepicker" data-target="#datepicker">
-                                                    </div>
-                                                </div>
-                                                <div class="col-sm-12">
-                                                    <div class="form-group">
-                                                        <label class="font-normal">Description</label>
-                                                        <input id="description" name="description" type="text" class="form-control" required>
-                                                    </div>
-                                                </div>
-
-                                                <div class="col-sm-12">
-                                                    <div class="form-group">
-                                                        <label class="font-normal">Amount</label>
-                                                        <input id="amount" name="amount" type="text" class="form-control" required>
-                                                    </div>
-                                                </div>
-
-
+                                <div class="modal fade" id="addModal" role="dialog" aria-labelledby="demoModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="demoModalLabel">Add New Expense</h5>
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                                             </div>
-                                        </div>
-                                        <div class="modal-footer">
-                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                            <button type="submit" class="btn btn-primary">Save</button>
-                                        </div>
 
-                                    </form>
+
+                                            <form role="form" id="createForm" action="<?php echo base_url('expenses/createexpense') ?>" method="post">
+
+                                                <?php echo validation_errors(); ?>
+                                                <div class="modal-body">
+
+                                                    <div class="row">
+
+                                                        <div class="col-sm-8">
+                                                            <div class="form-group">
+                                                                <label class="font-normal">Date</label>
+                                                                <input name="date" type="date" class="form-control" value="<?php echo date('Y-m-d'); ?>">
+
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-sm-12">
+                                                            <div class="form-group">
+                                                                <label class="font-normal">Description</label>
+                                                                <input id="description" name="description" type="text" class="form-control" required>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="col-sm-6">
+                                                            <div class="form-group">
+                                                                <label class="font-normal">Amount</label>
+                                                                <input id="amount" name="amount" type="text" class="form-control" required>
+                                                            </div>
+                                                        </div>
+
+
+                                                    </div>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                    <button type="submit" class="btn btn-primary">Save</button>
+                                                </div>
+
+                                            </form>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
+                            <div class="col col-sm-6">
+                                <div class="row">
+                                    <div class="col-md-6 form-group">
+                                        <label for="">From</label>
+                                        <input type="date" id="from_date_filter" class="form-control" value="<?php echo date('Y-m-d'); ?>">
+                                    </div>
+                                    <div class="col-md-6 form-group">
+                                        <label for="">To</label>
+                                        <input type="date" id="to_date_filter" class="form-control" value="<?php echo date('Y-m-d'); ?>">
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div class="col col-sm-3">
+                                <div class="card-options text-right">
+                                    <button type="button" class="btn btn-default" onclick="printDiv()"><i class="ik ik-printer"></i>Print Report</button>
+
+                                </div>
+                            </div>
+
+                       
                     </div>
                     <div class="card-body">
-                        <div class="dt-responsive">
+                        <div class="dt-responsive" id="printable_table">
                             <table id="simpletable" class="table table-striped table-bordered nowrap">
                                 <thead>
                                     <tr>
-                                        <th>Date</th>
+                                        <th class="d-none"></th>
+                                        <th data-sort-ignore="true">Date</th>
                                         <th>Description</th>
-                                        <th>Amount</th>
+                                        <th style="text-align:right;">Amount</th>
 
                                         <th></th>
                                     </tr>
@@ -113,10 +139,11 @@
 
                                     <?php foreach ($expense_data as $key => $value) { ?>
                                         <tr>
+                                            <th class="d-none"></th>
                                             <td><?php echo $expense_data[$key]['date']; ?></td>
 
                                             <td><?php echo $expense_data[$key]['description']; ?></td>
-                                            <td><?php echo $expense_data[$key]['amount']; ?></td>
+                                            <td style="text-align:right;"><?php echo number_format($expense_data[$key]['amount'], 2); ?></td>
 
                                             <td>
                                                 <div class="table-actions">
@@ -143,13 +170,10 @@
 
                                                             <div class="row">
 
-
-
-
-                                                                <div class="col-sm-12">
+                                                                <div class="col-sm-8">
                                                                     <div class="form-group">
                                                                         <label class="font-normal">Date</label>
-                                                                        <input name="date" type="text" class="form-control datetimepicker-input" id="datepicker" data-toggle="datetimepicker" data-target="#datepicker" value="<?php echo $expense_data[$key]['date']; ?>" required>
+                                                                        <input name="date" type="date" class="form-control" value="<?php echo $expense_data[$key]['date']; ?>">
                                                                     </div>
                                                                 </div>
                                                                 <div class="col-sm-12">
@@ -159,7 +183,7 @@
                                                                     </div>
                                                                 </div>
 
-                                                                <div class="col-sm-12">
+                                                                <div class="col-sm-6">
                                                                     <div class="form-group">
                                                                         <label class="font-normal">Amount</label>
                                                                         <input id="amount" name="amount" type="text" class="form-control" value="<?php echo $expense_data[$key]['amount']; ?>" required>
@@ -222,5 +246,53 @@
         $("#otherExpensesMainMenu").addClass('active');
 
         $(".select2").select2();
+
     });
+</script>
+
+
+<script>
+    function printDiv() {
+        var total = 0;
+
+        var from = new Date(document.getElementById('from_date_filter').value);
+        var to = new Date(document.getElementById('to_date_filter').value);
+        $('#printable_table tr').each(function(index, elem) {
+            $(this).find('th').eq(3).remove();
+            $(this).find('td').eq(3).remove();
+
+            // after removal
+
+
+            var package_date = new Date($(this).find('td').eq(0).text());
+
+            if ((from.getTime() <= package_date.getTime()) && (to.getTime() >= package_date.getTime())) {
+
+            } else {
+                $(this).remove();
+            }
+
+            total = total + Number($(this).find('td').eq(2).text().replace(',', ''));
+
+        });
+
+
+        $("#printable_table").append(" <br> <hr> <b>From :" +
+            document.getElementById('from_date_filter').value + " to " +
+            document.getElementById('to_date_filter').value +
+            "<br><b>Total Expenses : " + Number((total).toFixed(1)).toLocaleString() + "</b>");
+        var printContents = document.getElementById('printable_table').innerHTML;
+        var originalContents = document.body.innerHTML;
+
+        document.body.innerHTML = printContents;
+
+        window.print();
+
+        document.body.innerHTML = originalContents;
+
+        location.reload();
+
+
+
+    }
 </script>

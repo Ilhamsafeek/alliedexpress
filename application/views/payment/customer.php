@@ -6,8 +6,14 @@
                     <div class="page-header-title">
                         <i class="ik ik-check-circle bg-blue"></i>
                         <div class="d-inline">
-                            <h5>Customer Payment</h5>
-                            <span>Payment of Cash on Delivery for the package</span>
+                            <h5>
+                                <?php if ($this->session->userdata()['type'] == 'customer') { ?>
+                                    My Payments
+                                <?php } else { ?>
+                                    Customer Payment
+                                <?php  } ?>
+
+                            </h5>
                         </div>
                     </div>
                 </div>
@@ -70,7 +76,7 @@
                                                 <div class="col-sm-3">
                                                     <div class="form-group">
                                                         <label class="font-normal">Date</label>
-                                                        <input name="date" type="text" class="form-control datetimepicker-input" id="datepicker" data-toggle="datetimepicker" data-target="#datepicker" value="<?php echo date('d/m/Y'); ?>">
+                                                        <input name="date" type="text" class="form-control datetimepicker-input" id="datepicker" data-toggle="datetimepicker" data-target="#datepicker" value="<?php echo date('Y-m-d'); ?>">
                                                     </div>
                                                 </div>
                                                 <div class="col-sm-8">
@@ -96,12 +102,12 @@
                                                                         <span class="custom-control-label">&nbsp;</span>
                                                                     </label> -->
                                                                 </th>
-                                                                <th>Date</th>
-                                                                <th>Way Bill No</th>
-                                                                <th>Customer</th>
-                                                                <th>COD Amount</th>
-                                                                <th>Courier Charge</th>
-                                                                <th>Delivery Status</th>
+                                                                <th style="text-align: center;">Date</th>
+                                                                <th style="text-align: center;">Way Bill No</th>
+                                                                <th style="text-align: center;">Customer</th>
+                                                                <th style="text-align: center;">COD Amount</th>
+                                                                <th style="text-align: center;">Courier Charge</th>
+                                                                <th style="text-align: center;">Delivery Status</th>
 
                                                             </tr>
                                                         </thead>
@@ -215,24 +221,24 @@
                             <table id="simpletable" class="table table-striped">
                                 <thead>
                                     <tr>
-                                        <th></th>
+
                                         <th>Date</th>
                                         <?php if ($this->session->userdata()['type'] == 'admin') : ?>
                                             <th>Customer</th>
                                         <?php endif; ?>
                                         <th>Receipt No</th>
-                                        <th>Way Bills</th>
-                                        <th>Amount</th>
+                                        <!-- <th>Way Bills</th> -->
+                                        <th style="text-align: right;">Amount</th>
 
 
-                                        <th></th>
+                                        <th style="text-align: right;">View / Print</th>
                                     </tr>
                                 </thead>
                                 <tbody>
 
                                     <?php foreach ($customer_payment_data as $key => $value) { ?>
                                         <tr>
-                                            <th></th>
+
                                             <td><?php echo $customer_payment_data[$key]['date']; ?></td>
                                             <?php if ($this->session->userdata()['type'] == 'admin') : ?>
                                                 <td><?php echo $customer_payment_data[$key]['name']; ?></td>
@@ -253,15 +259,14 @@
                                                 }
                                             }  ?>
 
-                                            <td><?php
-                                                foreach ($packages as $waybill_id => $waybill_no) { ?>
+                                            <!-- <td><?php
+                                                        foreach ($packages as $waybill_id => $waybill_no) { ?>
                                                     <span class="badge badge-primary"><?php echo $waybill_no; ?></span>
                                                 <?php }
 
                                                 ?>
-
-                                            </td>
-                                            <td><?php echo $customer_payment_data[$key]['total']; ?></td>
+                                            </td> -->
+                                            <td style="text-align: right;"><?php echo number_format($customer_payment_data[$key]['total'], 2); ?></td>
 
                                             <td>
                                                 <div class="table-actions">
@@ -306,17 +311,17 @@
 
                                                                 </div>
                                                             </div>
-                                                            <div class="row" style="background-color: #f5f5f5 !important;">
+                                                            <div class="row" style="background-color: #f5f5f5 !important; padding-right: 8%">
                                                                 <div class="col-md-3">
                                                                     <p>Way Bill No</p>
                                                                 </div>
                                                                 <div class="col-md-3">
                                                                     <p>Status</p>
                                                                 </div>
-                                                                <div class="col-md-3">
+                                                                <div class="col-md-3" style="text-align:right">
                                                                     <p>Amount</p>
                                                                 </div>
-                                                                <div class="col-md-3">
+                                                                <div class="col-md-3" style="text-align:right">
                                                                     <p>Courier Charge</p>
                                                                 </div>
 
@@ -333,24 +338,24 @@
                                                             ?>
                                                                         <div class="row">
                                                                             <div class="col-md-3">
-                                                                                <p><span class="badge badge-primary"><?php echo $package_data[$index]['way_bill_no']; ?></span></p>
+                                                                                <p><span><?php echo $package_data[$index]['way_bill_no']; ?></span></p>
                                                                             </div>
                                                                             <div class="col-md-3">
                                                                                 <p><?php echo $package_data[$index]['delivery_status']; ?></p>
                                                                             </div>
-                                                                            <div class="col-md-3">
+                                                                            <div class="col-md-3" style="text-align:right; padding-right:8%">
                                                                                 <p><?php
                                                                                     if ($package_data[$index]['delivery_status'] != 'returned') {
-                                                                                        echo $package_data[$index]['cod_amount'];
+                                                                                        echo number_format($package_data[$index]['cod_amount'], 2);
                                                                                     } else {
-                                                                                        echo '0';
+                                                                                        echo number_format('0', 2);
                                                                                     }
 
 
                                                                                     ?></p>
                                                                             </div>
-                                                                            <div class="col-md-3">
-                                                                                <p><?php echo $package_data[$index]['courier_charge']; ?></p>
+                                                                            <div class="col-md-3" style="text-align:right; padding-right:10%">
+                                                                                <p><?php echo number_format($package_data[$index]['courier_charge'], 2); ?></p>
                                                                             </div>
 
                                                                         </div>
@@ -369,15 +374,15 @@
                                                                             Total COD:
                                                                         </div>
                                                                         <div class="col-md-6" style="float: right;">
-                                                                            <strong style="float: right;"><?php echo $customer_payment_data[$key]['sub_total']; ?></strong>
+                                                                            <strong style="float: right;"><?php echo number_format($customer_payment_data[$key]['sub_total'], 2); ?></strong>
                                                                         </div>
                                                                     </div>
                                                                     <div class="row">
                                                                         <div class="col-md-6">
-                                                                            Total Courier Charge:
+                                                                            Total Courier Charge(-):
                                                                         </div>
                                                                         <div class="col-md-6">
-                                                                            <strong style="float: right;"><?php echo $customer_payment_data[$key]['total_courier']; ?></strong>
+                                                                            <strong style="float: right;"><?php echo number_format($customer_payment_data[$key]['total_courier'], 2); ?></strong>
                                                                         </div>
                                                                     </div>
                                                                     <div class="row">
@@ -385,7 +390,7 @@
                                                                             Total Payment:
                                                                         </div>
                                                                         <div class="col-md-6" style="float: right;">
-                                                                            <strong style="float: right;"><?php echo $customer_payment_data[$key]['total']; ?></strong>
+                                                                            <strong style="float: right;"><?php echo number_format($customer_payment_data[$key]['total'], 2); ?></strong>
                                                                         </div>
                                                                     </div>
                                                                 </div>

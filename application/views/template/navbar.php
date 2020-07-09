@@ -69,7 +69,8 @@
                 </div> -->
                 <button type="button" class="nav-link ml-10" id="apps_modal_btn" data-toggle="modal" data-target="#appsModal"><i class="ik ik-grid"></i></button>
                 <div class="dropdown">
-                    <a class="dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img class="avatar" src="img/user.jpg" alt=""></a>
+                <button type="button" class="dropdown-toggle nav-link ml-10" id="userDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="ik ik-settings"></i></button>
+
                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
                         <a class="dropdown-item" href="<?php echo base_url('users/profile'); ?>"><i class="ik ik-user dropdown-icon"></i> Profile</a>
                         <a class="dropdown-item" href="<?php echo base_url('auth/logout'); ?>"><i class="ik ik-power dropdown-icon"></i> Logout</a>

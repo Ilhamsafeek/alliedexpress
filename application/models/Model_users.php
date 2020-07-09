@@ -45,8 +45,8 @@ class Model_users extends CI_Model
 		$sql = "SELECT * FROM users 
 	
 		INNER JOIN zone ON users.zone_id=zone.zone_id 
-		WHERE users.type <> ? ORDER BY users.user_id DESC";
-		$query = $this->db->query($sql, 'admin');
+		WHERE users.type <> ? AND users.type <> ? ORDER BY users.user_id DESC";
+		$query = $this->db->query($sql, array('admin', 'staff'));
 		return $query->result_array();
 	}
 

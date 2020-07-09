@@ -6,7 +6,7 @@
                     <div class="page-header-title">
                         <i class="ik ik-truck bg-blue"></i>
                         <div class="d-inline">
-                            <h5>Riders</h5>
+                            <h5>Staff</h5>
                         </div>
                     </div>
                 </div>
@@ -17,7 +17,7 @@
                                 <a href="#"><i class="ik ik-home"></i></a>
                             </li>
                             <li class="breadcrumb-item">
-                                <a href="#">Riders</a>
+                                <a href="#">Staff</a>
                             </li>
                         </ol>
                     </nav>
@@ -33,18 +33,18 @@
             <div class="col-sm-12">
                 <div class="card">
                     <div class="card-header d-block">
-                        <button type="button" class="btn btn-success" data-toggle="modal" data-target="#addModal"><i class="ik ik-plus"></i>Add Rider</button>
+                        <button type="button" class="btn btn-success" data-toggle="modal" data-target="#addModal"><i class="ik ik-plus"></i>Add Staff</button>
 
                         <div class="modal fade" id="addModal" role="dialog" aria-labelledby="demoModalLabel" aria-hidden="true">
                             <div class="modal-dialog modal-lg" role="document">
                                 <div class="modal-content">
                                     <div class="modal-header">
-                                        <h5 class="modal-title" id="demoModalLabel">Add Rider</h5>
+                                        <h5 class="modal-title" id="demoModalLabel">Add Staff</h5>
                                         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                                     </div>
 
 
-                                    <form role="form" id="createForm" action="<?php echo base_url('users/create/riders') ?>" method="post">
+                                    <form role="form" id="createForm" action="<?php echo base_url('users/create/staff') ?>" method="post">
 
                                         <?php echo validation_errors(); ?>
                                         <div class="modal-body">
@@ -58,35 +58,14 @@
                                                             <input id="name" name="name" type="text" class="form-control" autocomplete="off" required>
                                                         </div>
                                                     </div>
-                                                    <div class="col-sm-8">
-                                                        <div class="form-group">
-                                                            <label class="col-form-label" for="description">Zone</label>
-                                                            <select class="form-control select2" data-placeholder="Choose zone" id="zone_id" name="zone_id" style="width:100%;" required>
-                                                                <?php foreach ($zone_data as $k => $v) : ?>
-                                                                    <option value="<?php echo $v['zone_id']; ?>"><?php echo $v['zone'] ?></option>
-                                                                <?php endforeach ?>
-                                                            </select>
-                                                        </div>
 
-                                                    </div>
-                                                    <div class="col-sm-8">
-                                                        <div class="form-group">
-                                                            <label class="font-normal">Phone</label>
-                                                            <input id="phone" name="phone" type="text" class="form-control" required>
-                                                        </div>
-                                                    </div>
                                                     <div class="col-sm-8">
                                                         <div class="form-group">
                                                             <label class="font-normal">Email</label>
                                                             <input id="email" name="email" type="text" class="form-control" required>
                                                         </div>
                                                     </div>
-                                                    <div class="col-sm-8">
-                                                        <div class="form-group">
-                                                            <label class="font-normal">Commission</label>
-                                                            <input id="commission" name="commission" type="text" class="form-control" autocomplete="off" required>
-                                                        </div>
-                                                    </div>
+
                                                 </div>
                                                 <div class="col-sm-6">
                                                     <p>Account access</p>
@@ -104,7 +83,7 @@
                                                     </div>
 
 
-                                                    <input id="type" name="type" type="hidden" class="form-control" value="rider">
+                                                    <input id="type" name="type" type="hidden" class="form-control" value="staff">
                                                 </div>
 
                                             </div>
@@ -120,15 +99,14 @@
                         </div>
                     </div>
                     <div class="card-body">
-                        <div class="table-responsive">
+                        <div class="dt-responsive">
                             <table id="simpletable" class="table table-striped table-bordered nowrap">
                                 <thead>
                                     <tr>
                                         <th></th>
-                                        <th>Zone</th>
                                         <th>Name</th>
-                                        <th>Phone</th>
-                                        <th>Commission</th>
+                                        <th>Email</th>
+                                        <th>Username</th>
                                         <th></th>
                                     </tr>
                                 </thead>
@@ -137,10 +115,9 @@
                                     <?php foreach ($user_data as $key => $value) { ?>
                                         <tr>
                                             <th></th>
-                                            <td><?php echo $user_data[$key]['zone']; ?></td>
                                             <td><?php echo $user_data[$key]['name']; ?></td>
-                                            <td><?php echo $user_data[$key]['phone']; ?></td>
-                                            <td><?php echo $user_data[$key]['commission']; ?></td>
+                                            <td><?php echo $user_data[$key]['email']; ?></td>
+                                            <td><?php echo $user_data[$key]['username']; ?></td>
                                             <td>
                                                 <div class="table-actions">
 
@@ -154,12 +131,12 @@
                                             <div class="modal-dialog modal-lg" role="document">
                                                 <div class="modal-content">
                                                     <div class="modal-header">
-                                                        <h5 class="modal-title" id="demoModalLabel">Edit Rider</h5>
+                                                        <h5 class="modal-title" id="demoModalLabel">Edit Staff</h5>
                                                         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                                                     </div>
 
 
-                                                    <form role="form" id="createForm" action="<?php echo base_url('users/edit/' . $user_data[$key]['user_id'] . '/riders'); ?>" method="post">
+                                                    <form role="form" id="createForm" action="<?php echo base_url('users/edit/' . $user_data[$key]['user_id'] . '/staff'); ?>" method="post">
 
                                                         <?php echo validation_errors(); ?>
                                                         <div class="modal-body">
@@ -173,39 +150,15 @@
                                                                             <input id="name" name="name" type="text" class="form-control" autocomplete="off" value="<?php echo $user_data[$key]['name']; ?>" required>
                                                                         </div>
                                                                     </div>
-                                                                    <div class="col-sm-8">
-                                                                        <div class="form-group">
-                                                                            <label class="col-form-label" for="description">Zone</label>
-                                                                            <select class="form-control select2" data-placeholder="Choose zone" id="zone_id" name="zone_id" style="width:100%;" required>
-                                                                                <?php foreach ($zone_data as $k => $v) : ?>
-                                                                                    <option value="<?php echo $v['zone_id']; ?>" <?php if ($v['zone_id'] == $user_data[$key]['zone_id']) {
-                                                                                                                                        echo 'selected';
-                                                                                                                                    } ?>><?php echo $v['zone'] ?></option>
-                                                                                <?php endforeach ?>
 
 
-                                                                            </select>
-                                                                        </div>
-
-                                                                    </div>
-                                                                    <div class="col-sm-8">
-                                                                        <div class="form-group">
-                                                                            <label class="font-normal">Phone</label>
-                                                                            <input id="phone" name="phone" type="text" class="form-control" value="<?php echo $user_data[$key]['phone']; ?>" required>
-                                                                        </div>
-                                                                    </div>
                                                                     <div class="col-sm-8">
                                                                         <div class="form-group">
                                                                             <label class="font-normal">Email</label>
                                                                             <input id="email" name="email" type="text" class="form-control" value="<?php echo $user_data[$key]['email']; ?>" required>
                                                                         </div>
                                                                     </div>
-                                                                    <div class="col-sm-8">
-                                                                        <div class="form-group">
-                                                                            <label class="font-normal">Commission</label>
-                                                                            <input id="commission" name="commission" type="text" class="form-control" autocomplete="off" value="<?php echo $user_data[$key]['commission']; ?>" required>
-                                                                        </div>
-                                                                    </div>
+
                                                                 </div>
                                                                 <div class="col-sm-6">
                                                                     <p>Account access</p>
@@ -257,7 +210,7 @@
                                                         <p>Do you Really want to delete?</p>
                                                     </div>
 
-                                                    <form role="form" id="createForm" action="<?php echo base_url('users/delete/' . $user_data[$key]['user_id'] . '/riders'); ?>" method="post">
+                                                    <form role="form" id="createForm" action="<?php echo base_url('users/delete/' . $user_data[$key]['user_id'] . '/staff'); ?>" method="post">
 
                                                         <?php echo validation_errors(); ?>
 
@@ -288,7 +241,7 @@
 
 <script type="text/javascript">
     $(document).ready(function() {
-        $("#ridersMainMenu").addClass('active');
+        $("#staffMainMenu").addClass('active');
         $(".select2").select2();
     });
 </script>

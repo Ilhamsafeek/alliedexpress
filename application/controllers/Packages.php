@@ -34,6 +34,8 @@ class Packages extends Admin_Controller
 
 		$user_data = $this->model_users->getNonAdminData();
 		$this->data['user_data'] = $user_data;
+
+
 		$this->render_template('packages/index', $this->data);
 	}
 

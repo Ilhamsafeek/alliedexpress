@@ -7,7 +7,6 @@
                         <i class="ik ik-users bg-blue"></i>
                         <div class="d-inline">
                             <h5>Customers</h5>
-                            <span>Package senders</span>
                         </div>
                     </div>
                 </div>
@@ -131,7 +130,7 @@
 
 
                                                     <input id="type" name="type" type="hidden" class="form-control" value="customer">
-                                                    <input id="date" name="date" type="hidden" class="form-control" value="<?php echo date("d/m/Y"); ?>">
+                                                    <input id="date" name="date" type="hidden" class="form-control" value="<?php echo date("Y-m-d"); ?>">
 
                                                 </div>
 
@@ -170,7 +169,7 @@
                                     <?php foreach ($customer_data as $key => $value) { ?>
                                         <tr>
                                             <th></th>
-                                            <td><?php echo $customer_data[$key]['date']; ?></td>
+                                            <td><?php echo $customer_data[$key]['registered_date']; ?></td>
                                             <td><?php echo $customer_data[$key]['company']; ?></td>
                                             <td><?php echo $customer_data[$key]['name']; ?></td>
                                             <td><?php echo $customer_data[$key]['address']; ?></td>
