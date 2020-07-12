@@ -508,7 +508,7 @@
 </script>
 
 <script>
-    function printDiv() {
+    function  () {
         var printContents = document.getElementById('printable_receipt').innerHTML;
         var originalContents = document.body.innerHTML;
 
